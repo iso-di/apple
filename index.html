@@ -148,7 +148,7 @@
     <form>
       <div class="form-group">
         <select id="model" onchange="updateMemoryOptions(); calculatePrice();">
-          <option value="">  Оберіть модель телефону  </option>
+          <option value="">Обери модель телефону</option>
           <option value="iPhone 8">iPhone 8</option>
           <option value="iPhone 8 Plus">iPhone 8 Plus</option>
           <option value="iPhone X">iPhone X</option>
@@ -178,25 +178,22 @@
           <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
         </select>
       </div>
-      <p></p>
       <div class="form-group">
         <select id="memory" onchange="calculatePrice()">
-          <option value="">   Оберіть обсяг памяті   </option>
+          <option value="">Обери обсяг пам'яті</option>
         </select>
       </div>
-      <p></p>
       <div class="form-group">
         <select id="condition" onchange="calculatePrice()">
-          <option value="">  Оберіть стан  </option>
+          <option value="">Обери стан</option>
           <option value="Ідеальний">Ідеальний</option>
-          <option value="Гарний стан">Гарний</option>
+          <option value="Гарний стан">Гарний стан</option>
           <option value="Зі слідами використання">Зі слідами використання</option>
         </select>
       </div>
-      <p></p>
       <div class="form-group">
         <select id="battery" onchange="calculatePrice()">
-          <option value="">  Оберіть стан акумулятора  </option>
+          <option value="">Обери стан акумулятора</option>
           <option value="87-100%">87-100%</option>
           <option value="79-86%">79-86%</option>
         </select>
@@ -204,7 +201,6 @@
     </form>
     <center><div class="price hidden" id="price">Будь ласка, заповніть всі опції.</div></center>
   </div>
-
   <script>
     // Опции памяти для каждой модели
     const memoryOptions = {
@@ -234,38 +230,7 @@
       "iPhone 15": ["64GB", "256GB"],
       "iPhone 15 Plus": ["64GB", "256GB"],
       "iPhone 15 Pro": ["64GB", "256GB"],
-      "iPhone 15 Pro Max": ["64GB", "256GB"],
-    };
-
-    // Базовые цены для моделей и объемов памяти
-    const basePrices = {
-      "iPhone 8": { "64GB": 3500, "256GB": 4000 },
-      "iPhone 8 Plus": { "64GB": 4000, "256GB": 4500 },
-      "iPhone X": { "64GB": 5000, "256GB": 5500 },
-      "iPhone XS": { "64GB": 6000, "256GB": 6500, "512GB": 7000 },
-      "iPhone XS Max": { "64GB": 7000, "256GB": 7500, "512GB": 8000 },
-      "iPhone XR": { "64GB": 6000, "256GB": 6500 },
-      "iPhone SE2020": { "64GB": 4000, "256GB": 4500 },
-      "iPhone 11": { "64GB": 6000, "256GB": 6500 },
-      "iPhone 11 Pro": { "64GB": 7000, "256GB": 7500 },
-      "iPhone 11 Pro Max": { "64GB": 7500, "256GB": 8000 },
-      "iPhone 12 Mini": { "64GB": 7500, "256GB": 8000 },
-      "iPhone 12": { "64GB": 8000, "256GB": 8500 },
-      "iPhone 12 Pro": { "64GB": 10000, "256GB": 10500 },
-      "iPhone 12 Pro Max": { "64GB": 11000, "256GB": 11500 },
-      "iPhone SE2022": { "64GB": 5500, "256GB": 6000 },
-      "iPhone 13 Mini": { "64GB": 9000, "256GB": 9500 },
-      "iPhone 13": { "64GB": 9500, "256GB": 10000 },
-      "iPhone 13 Pro": { "64GB": 12000, "256GB": 12500 },
-      "iPhone 13 Pro Max": { "64GB": 13000, "256GB": 13500 },
-      "iPhone 14": { "64GB": 14000, "256GB": 14500 },
-      "iPhone 14 Plus": { "64GB": 15000, "256GB": 15500 },
-      "iPhone 14 Pro": { "64GB": 16000, "256GB": 16500 },
-      "iPhone 14 Pro Max": { "64GB": 17000, "256GB": 17500 },
-      "iPhone 15": { "64GB": 18000, "256GB": 18500 },
-      "iPhone 15 Plus": { "64GB": 19000, "256GB": 19500 },
-      "iPhone 15 Pro": { "64GB": 20000, "256GB": 20500 },
-      "iPhone 15 Pro Max": { "64GB": 21000, "256GB": 21500 },
+      "iPhone 15 Pro Max": ["64GB", "256GB"]
     };
 
     // Модификаторы состояния
@@ -274,32 +239,136 @@
       "Гарний стан": 0.96,
       "Зі слідами використання": 0.92
     };
- // Суммы вычитания для состояния батареи
+
+    // Фиксированные суммы вычитания для батареи для каждой модели
     const batteryDeductions = {
-      "87-100%": 0,
-      "79-86%": 0.05
+      "iPhone 8": {
+        "87-100%": 0,
+        "79-86%": 100 // 100 грн вычитания для iPhone 8
+      },
+      "iPhone 8 Plus": {
+        "87-100%": 0,
+        "79-86%": 100
+      },
+      "iPhone X": {
+        "87-100%": 0,
+        "79-86%": 150 // 150 грн для iPhone X
+      },
+      "iPhone XS": {
+        "87-100%": 0,
+        "79-86%": 120
+      },
+      "iPhone XS Max": {
+        "87-100%": 0,
+        "79-86%": 120
+      },
+      "iPhone XR": {
+        "87-100%": 0,
+        "79-86%": 100
+      },
+      "iPhone SE2020": {
+        "87-100%": 0,
+        "79-86%": 100
+      },
+      "iPhone 11": {
+        "87-100%": 0,
+        "79-86%": 120
+      },
+      "iPhone 11 Pro": {
+        "87-100%": 0,
+        "79-86%": 120
+      },
+      "iPhone 11 Pro Max": {
+        "87-100%": 0,
+        "79-86%": 120
+      },
+      "iPhone 12 Mini": {
+        "87-100%": 0,
+        "79-86%": 80 // 80 грн для iPhone 12 Mini
+      },
+      "iPhone 12": {
+        "87-100%": 0,
+        "79-86%": 80
+      },
+      "iPhone 12 Pro": {
+        "87-100%": 0,
+        "79-86%": 80
+      },
+      "iPhone 12 Pro Max": {
+        "87-100%": 0,
+        "79-86%": 80
+      },
+      "iPhone SE2022": {
+        "87-100%": 0,
+        "79-86%": 80
+      },
+      "iPhone 13 Mini": {
+        "87-100%": 0,
+        "79-86%": 80
+      },
+      "iPhone 13": {
+        "87-100%": 0,
+        "79-86%": 80
+      },
+      "iPhone 13 Pro": {
+        "87-100%": 0,
+        "79-86%": 80
+      },
+      "iPhone 13 Pro Max": {
+        "87-100%": 0,
+        "79-86%": 80
+      },
+      "iPhone 14": {
+        "87-100%": 0,
+        "79-86%": 100
+      },
+       "iPhone 14 Plus": {
+        "87-100%": 0,
+        "79-86%": 100
+      },
+      "iPhone 14 Pro": {
+        "87-100%": 0,
+        "79-86%": 100
+      },
+      "iPhone 14 Pro Max": {
+        "87-100%": 0,
+        "79-86%": 100
+      },
+      "iPhone 15": {
+        "87-100%": 0,
+        "79-86%": 150
+      },
+      "iPhone 15 Plus": {
+        "87-100%": 0,
+        "79-86%": 150
+      },
+      "iPhone 15 Pro": {
+        "87-100%": 0,
+        "79-86%": 150
+      },
+      "iPhone 15 Pro Max": {
+        "87-100%": 0,
+        "79-86%": 150
+      }
     };
 
-    // Функция для обновления опций памяти в зависимости от выбранной модели
+    // Функция для обновления опций памяти
     function updateMemoryOptions() {
       const model = document.getElementById("model").value;
       const memorySelect = document.getElementById("memory");
+      memorySelect.innerHTML = '<option value="">Обери обсяг пам\'яті</option>'; // очищаем старые опции
 
-      // Очищаем предыдущие опции
-      memorySelect.innerHTML = "<option value=''>   Оберіть обсяг памяті   </option>";
-
-      // Добавляем новые опции в зависимости от модели
-      if (memoryOptions[model]) {
-        memoryOptions[model].forEach(function(option) {
-          const newOption = document.createElement("option");
-          newOption.value = option;
-          newOption.textContent = option;
-          memorySelect.appendChild(newOption);
+      if (model && memoryOptions[model]) {
+        memoryOptions[model].forEach(function (memory) {
+          const option = document.createElement("option");
+          option.value = memory;
+          option.textContent = memory;
+          memorySelect.appendChild(option);
         });
       }
     }
 
-    // Функция для расчета цены
+    // Функция для расчета стоимости
     function calculatePrice() {
       const model = document.getElementById("model").value;
       const memory = document.getElementById("memory").value;
@@ -307,34 +376,26 @@
       const battery = document.getElementById("battery").value;
 
       const priceElement = document.getElementById("price");
+      priceElement.classList.add("hidden");
 
-      // Если не выбрана модель, память, состояние или батарея, скрываем цену
       if (!model || !memory || !condition || !battery) {
-        priceElement.classList.add("hidden");
-        priceElement.textContent = "Будь ласка, заповніть всі опції.";
-        return;
+        return; // Если не все поля выбраны, не рассчитываем цену
       }
 
-      // Получаем базовую цену для выбранной модели и памяти
-      const basePrice = basePrices[model] && basePrices[model][memory];
+      // Пример начальной цены для модели (это можно заменить на реальные цены)
+      let basePrice = 1000; // Стоимость в базовой комплектации
 
-      // Если база цены не найдена, скрываем цену
-      if (!basePrice) {
-        priceElement.classList.add("hidden");
-        priceElement.textContent = "Будь ласка, заповніть всі опції.";
-        return;
-      }
-
-      // Применяем модификаторы
+      // Модификатор для состояния
       const conditionModifier = conditionModifiers[condition] || 1;
-      const batteryDeduction = batteryDeductions[battery] || 0;
 
-      // Рассчитываем итоговую цену
-      const finalPrice = basePrice * conditionModifier * (1 - batteryDeduction);
+      // Сумма вычитания для батареи
+      const batteryDeduction = batteryDeductions[model] && batteryDeductions[model][battery] || 0;
 
-      // Показываем итоговую цену
+      // Итоговая цена
+      const finalPrice = basePrice * conditionModifier - batteryDeduction;
+
+      priceElement.textContent = `Оцінена вартість: ${finalPrice.toFixed(2)} грн.`;
       priceElement.classList.remove("hidden");
-      priceElement.textContent = "Оцінка: " + finalPrice.toFixed(2) + " грн";
     }
   </script>
 </article>
