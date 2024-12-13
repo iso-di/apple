@@ -1,39 +1,38 @@
 // Опции памяти для каждой модели
 const memoryOptions = {
   "iPhone 8": ["64GB", "256GB"],
-  "iPhone 8 Plus": ["64GB", "256GB"],
+  "iPhone 8": ["64GB", "256GB"],
   "iPhone X": ["64GB", "256GB"],
   "iPhone XS": ["64GB", "256GB", "512GB"],
   "iPhone XS Max": ["64GB", "256GB", "512GB"],
-  "iPhone XR": ["64GB", "128GB", "256GB"],
-  "iPhone SE2020": ["64GB", "128GB", "256GB"],
-  "iPhone 11": ["64GB", "128GB", "256GB"],
-  "iPhone 11 Pro": ["64GB", "256GB", "512GB"],
-  "iPhone 11 Max": ["64GB", "256GB", "512GB"],
-  "iPhone 12 Mini": ["64GB", "128GB", "256GB"],
-  "iPhone 12": ["64GB", "128GB", "256GB"],
-  "iPhone 12 Pro": ["128GB", "256GB", "512GB"],
-  "iPhone 12 Pro Max": ["128GB", "256GB", "512GB"],
-  "iPhone SE2022": ["64GB", "128GB", "256GB"],
-  "iPhone 13 Mini": ["128GB", "256GB", "512GB"],
-  "iPhone 13": ["128GB", "256GB", "512GB"],
-  "iPhone 13 Pro": ["128GB", "256GB", "512GB", "1TB"],
-  "iPhone 13 Pro Max": ["128GB", "256GB", "512GB", "1TB"],
-  "iPhone 14": ["128GB", "256GB", "512GB"],
-  "iPhone 14 Plus": ["128GB", "256GB", "512GB"],
-  "iPhone 14 Pro": ["128GB", "256GB", "512GB", "1TB"],
-  "iPhone 14 Pro Max": ["128GB", "256GB", "512GB", "1TB"],
-  "iPhone 15": ["128GB", "256GB", "512GB"],
-  "iPhone 15 Plus": ["128GB", "256GB", "512GB"],
-  "iPhone 15 Pro":  ["128GB", "256GB", "512GB", "1TB"],
-  "iPhone 15 Pro Max":  ["128GB", "256GB", "512GB", "1TB"],
+  "iPhone XR": ["64GB", "256GB"],
+  "iPhone SE2020": ["64GB", "256GB"],
+  "iPhone 11": ["64GB", "256GB"],
+  "iPhone 11 Pro": ["64GB", "256GB"],
+  "iPhone 11 Max": ["64GB", "256GB"],
+  "iPhone 12 Mini": ["64GB", "256GB"],
+  "iPhone 12": ["64GB", "256GB"],
+  "iPhone 12 Pro": ["64GB", "256GB"],
+  "iPhone 12 Pro Max": ["64GB", "256GB"],
+  "iPhone SE2022": ["64GB", "256GB"],
+  "iPhone 13 Mini": ["64GB", "256GB"],
+  "iPhone 13": ["64GB", "256GB"],
+  "iPhone 13 Pro": ["64GB", "256GB"],
+  "iPhone 13 Pro Max": ["64GB", "256GB"],
+  "iPhone 14": ["64GB", "256GB"],
+  "iPhone 14 Plus": ["64GB", "256GB"],
+  "iPhone 14 Pro Max": ["64GB", "256GB"],
+  "iPhone 15": ["64GB", "256GB"],
+  "iPhone 15 Plus": ["64GB", "256GB"],
+  "iPhone 15 Pro": ["64GB", "256GB"],
+  "iPhone 15 Pro Max": ["64GB", "256GB"],
 };
 
 // Базовые цены для моделей и объемов памяти
 const basePrices = {
-  "iPhone 8": [ "64GB": 3350, "256GB": 4150 ],
+  "iPhone 8": { "64GB": 200, "256GB": 300 },
   "iPhone 13": { "128GB": 16000, "256GB": 700, "512GB": 800 },
-  "iPhone 8 Plus": ["64GB", "256GB"],
+  "iPhone 8": ["64GB", "256GB"],
   "iPhone X": ["64GB", "256GB"],
   "iPhone XS": ["64GB", "256GB", "512GB"],
   "iPhone XS Max": ["64GB", "256GB", "512GB"],
@@ -62,17 +61,17 @@ const basePrices = {
 
 // Модификаторы состояния
 const conditionModifiers = {
-  "ideal": 1,
-  "good": 0.95, // Уменьшение на 5%
-  "bgrade": 0.92, // Уменьшение на 8%
+  "Ідеальний": 1,
+  "Гарний стан": 0.96,
+  "Зі слідами використання": 0.92 // Уменьшение на 8%
 };
 
 // Суммы вычитания для здоровья батареи
 const batteryDeductions = {
-  "iPhone 8": { "90-100%": 0, "80-89%": 1000 },
-  "iPhone 8 Plus": { "90-100%": 0, "80-89%": 1200 },
-  "iPhone 13": { "87-100%": 0, "79-86%": 3000 },
-
+  "iPhone 8": { "90-100%": 0, "80-89%": 15, "70-79%": 30 },
+  "iPhone 13": { "87-100%": 0, "79-86%": 3000, "70-79%": 50 },
+  "iPhone 13 Pro": { "90-100%": 0, "80-89%": 30, "70-79%": 60 },
+  "iPhone 14": { "90-100%": 0, "80-89%": 40, "70-79%": 80 }
 };
 
 // Обновление списка памяти в зависимости от выбранной модели
