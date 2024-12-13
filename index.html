@@ -32,80 +32,86 @@
 			}
 		</style>
 		<script>
-			function calculate() {
-				var X = parseFloat(document.getElementById("inputX").value); // Получаем введённое значение X для первого расчета
-				var divideBy = parseFloat(document.getElementById("divideSelect").value); // Получаем выбранное значение для деления первого расчета
-				var percentage = 0;
+		function calculate() {
+		  var X = parseFloat(document.getElementById("inputX").value); // Получаем введённое значение X для первого расчета
+		  var divideBy = parseFloat(document.getElementById("divideSelect").value); // Получаем выбранное значение для деления первого расчета
+		  var percentage = 0;
 		
-				// Устанавливаем процент для первого расчета в зависимости от выбранного значения
-				switch (divideBy) {
-					case 3:
-						percentage = 3.1;
-						break;
-					case 6:
-						percentage = 8;
-						break;
-					case 10:
-						percentage = 13.7;
-						break;
-					case 12:
-						percentage = 16.9;
-						break;
-					case 15:
-						percentage = 21.6;
-						break;
-					case 18:
-						percentage = 26.5;
-						break;
-				}
+		  // Устанавливаем процент для первого расчета в зависимости от выбранного значения
+		  switch (divideBy) {
+			case 3:
+			  percentage = 3.1;
+			  break;
+			case 6:
+			  percentage = 8;
+			  break;
+			case 10:
+			  percentage = 13.7;
+			  break;
+			case 12:
+			  percentage = 16.9;
+			  break;
+			case 15:
+			  percentage = 21.6;
+			  break;
+			case 18:
+			  percentage = 26.5;
+			  break;
+		  }
 		
-				if (!isNaN(X) && !isNaN(divideBy)) {
-					var Y = X + (X * (percentage / 100));
-					document.getElementById("formula").textContent = "Загальна вартість кредиту по 1С:  " + Y.toFixed(2);
-					var result = Y / divideBy;
-					document.getElementById("result").textContent = "На місяць: " + result.toFixed(2);
-				} else {
-					document.getElementById("formula").textContent = "";
-					document.getElementById("result").textContent = "";
-				}
+		  if (!isNaN(X) && !isNaN(divideBy) && X > 0) {
+			var Y = X + (X * (percentage / 100));
+			document.getElementById("formula").textContent = "Загальна вартість кредиту по 1С:  " + Y.toFixed(2);
+			var result = Y / divideBy;
+			document.getElementById("result").textContent = "На місяць: " + result.toFixed(2);
+			
+			// Показываем результат, если все данные введены
+			document.getElementById("result").style.display = 'inline';
+		  } else {
+			document.getElementById("formula").textContent = "";
+			document.getElementById("result").style.display = 'none'; // Скрываем кнопку, если данные не введены
+		  }
 		
-				// Второй расчет
-				var Y2 = parseFloat(document.getElementById("inputY").value); // Получаем значение Y для второго расчета
-				var divideBy2 = parseFloat(document.getElementById("divideSelect2").value); // Получаем выбранное значение для деления второго расчета
-				var percentage2 = 0;
+		  // Второй расчет
+		  var Y2 = parseFloat(document.getElementById("inputY").value); // Получаем значение Y для второго расчета
+		  var divideBy2 = parseFloat(document.getElementById("divideSelect2").value); // Получаем выбранное значение для деления второго расчета
+		  var percentage2 = 0;
 		
-				// Устанавливаем процент для второго расчета
-				switch (divideBy2) {
-					case 3:
-						percentage2 = 1.8;
-						break;
-					case 6:
-						percentage2 = 7.7;
-						break;
-					case 10:
-						percentage2 = 15.6;
-						break;
-					case 12:
-						percentage2 = 16.6;
-						break;
-					case 15:
-						percentage2 = 21.6;
-						break;
-					case 18:
-						percentage2 = 26.6;
-						break;
-				}
+		  // Устанавливаем процент для второго расчета
+		  switch (divideBy2) {
+			case 3:
+			  percentage2 = 1.8;
+			  break;
+			case 6:
+			  percentage2 = 7.7;
+			  break;
+			case 10:
+			  percentage2 = 15.6;
+			  break;
+			case 12:
+			  percentage2 = 16.6;
+			  break;
+			case 15:
+			  percentage2 = 21.6;
+			  break;
+			case 18:
+			  percentage2 = 26.6;
+			  break;
+		  }
 		
-				if (!isNaN(Y2) && !isNaN(divideBy2)) {
-					var YResult2 = Y2 + (Y2 * (percentage2 / 100));
-					document.getElementById("formula2").textContent = "Загальна вартість кредиту по 1С:  " + YResult2.toFixed(2);
-					var result2 = YResult2 / divideBy2;
-					document.getElementById("result2").textContent = "На місяць: " + result2.toFixed(2);
-				} else {
-					document.getElementById("formula2").textContent = "";
-					document.getElementById("result2").textContent = "";
-				}
-			}
+		  if (!isNaN(Y2) && !isNaN(divideBy2) && Y2 > 0) {
+			var YResult2 = Y2 + (Y2 * (percentage2 / 100));
+			document.getElementById("formula2").textContent = "Загальна вартість кредиту по 1С:  " + YResult2.toFixed(2);
+			var result2 = YResult2 / divideBy2;
+			document.getElementById("result2").textContent = "На місяць: " + result2.toFixed(2);
+			
+			// Показываем результат, если все данные введены
+			document.getElementById("result2").style.display = 'inline';
+		  } else {
+			document.getElementById("formula2").textContent = "";
+			document.getElementById("result2").style.display = 'none'; // Скрываем кнопку, если данные не введены
+		  }
+		}
 		</script>
 		</head>
 		<body>
@@ -444,7 +450,7 @@
 							   finalPrice += simModifiers[model] && simModifiers[model][sim] || 0;
 						 
 							   // Обновить отображаемую цену
-							   document.getElementById("final-price").textContent = "Оцінка телефону: " + finalPrice.toFixed(2) + " грн";
+							   document.getElementById("final-price").textContent = "Орієнтовна оцінка телефону: " + finalPrice.toFixed(2) + " грн";
 							 }
 						   } else {
 							 // Если не все поля выбраны, показываем сообщение
@@ -476,45 +482,46 @@
 
 						<!-- Work -->
 							<article id="o4">
-								<h2 class="major"> Монобанк</h2>
-								<label for="inputX">Введіть суму яка повинна зайти нам: </label>
-								<input type="number" id="inputX" step="any" oninput="calculate()"> <!-- Событие input для X -->
-								
-								<br><br>
-								
-								<label for="divideSelect">Оберіть кількість платежів: </label>
-								<select id="divideSelect" onchange="calculate()">
-									<option value="3">3 Платежі</option>
-									<option value="6">6 Платежів</option>
-									<option value="10">10 Платежів</option>
-									<option value="12">12 Платежів</option>
-									<option value="15">15 Платежів</option>
-									<option value="18">18 Платежів</option>
-								</select>
-								<br><br>
-								<h3><p style="color: red;" id="formula"></p></h3><!-- Показываем формулу X + процент = Y -->
-								<center><li<a class="button primary" id="result"></a> </li></center> 
-								
-								<hr />
+							  <h2 class="major">Монобанк</h2>
+							  <label for="inputX">Введіть суму, яка повинна зайти нам: </label>
+							  <input type="number" id="inputX" step="any" oninput="calculate()"> <!-- Событие input для X -->
+							 
+							  <br><br>
 
-								<h2> ПриватБанк</h2>
-								<label for="inputY">Введіть суму яка повинна зайти нам: </label>
-								<input type="number" id="inputY" step="any" oninput="calculate()">
-								
-								<br><br>
-								
-								<label for="divideSelect2">Оберіть кількість платежів: </label>
-								<select id="divideSelect2" onchange="calculate()">
-									<option value="3">3 Платежі</option>
-									<option value="6">6 Платежів</option>
-									<option value="10">10 Платежів</option>
-									<option value="12">12 Платежів</option>
-									<option value="15">15 Платежів</option>
-									<option value="18">18 Платежів</option>
-								</select>
-								<br><br>
-								<h3><p style="color: red;" id="formula2"></p></h3><!-- Показываем формулу X + процент = Y -->	<center><li<a class="button primary" id="result2"></a> </li></center> 
-								
+							  <label for="divideSelect">Оберіть кількість платежів: </label>
+							  <select id="divideSelect" onchange="calculate()">
+								<option value="3">3 Платежі</option>
+								<option value="6">6 Платежів</option>
+								<option value="10">10 Платежів</option>
+								<option value="12">12 Платежів</option>
+								<option value="15">15 Платежів</option>
+								<option value="18">18 Платежів</option>
+							  </select>
+							  <br><br>
+							  <h3><p style="color: red;" id="formula"></p></h3><!-- Показываем формулу X + процент = Y -->
+							  <center><a class="button primary" id="result" style="display:none;">На місяць: </a></center> <!-- Кнопка скрыта по умолчанию -->
+							  
+							  <hr />
+							
+							  <h2>ПриватБанк</h2>
+							  <label for="inputY">Введіть суму, яка повинна зайти нам: </label>
+							  <input type="number" id="inputY" step="any" oninput="calculate()">
+							  
+							  <br><br>
+							  
+							  <label for="divideSelect2">Оберіть кількість платежів: </label>
+							  <select id="divideSelect2" onchange="calculate()">
+								<option value="3">3 Платежі</option>
+								<option value="6">6 Платежів</option>
+								<option value="10">10 Платежів</option>
+								<option value="12">12 Платежів</option>
+								<option value="15">15 Платежів</option>
+								<option value="18">18 Платежів</option>
+							  </select>
+							  <br><br>
+
+							  <h3><p style="color: red;" id="formula2"></p></h3><!-- Показываем формулу X + процент = Y -->
+							  <center><a class="button primary" id="result2" style="display:none;">На місяць: </a></center> <!-- Кнопка скрыта по умолчанию -->
 							</article>
 
 						<!-- About -->
@@ -861,7 +868,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; iPhosha</p>
+						<p class="copyright">пиво,водка, турничок через часик я качок. &copy; Джейсон Стэтхем </p>
 					</footer>
 
 			</div>
