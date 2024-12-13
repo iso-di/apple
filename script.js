@@ -31,8 +31,9 @@ const memoryOptions = {
 
 // Базовые цены для моделей и объемов памяти
 const basePrices = {
-  "iPhone 8": { "64GB": 3350, "256GB": 4150 },
-  "iPhone 8 Plus": ["64GB": 4150, "256GB": 5000 ],
+  "iPhone 8": [ "64GB": 3350, "256GB": 4150 ],
+  "iPhone 13": { "128GB": 16000, "256GB": 700, "512GB": 800 },
+  "iPhone 8 Plus": ["64GB", "256GB"],
   "iPhone X": ["64GB", "256GB"],
   "iPhone XS": ["64GB", "256GB", "512GB"],
   "iPhone XS Max": ["64GB", "256GB", "512GB"],
