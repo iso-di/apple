@@ -388,7 +388,7 @@
 
 			if ('serviceWorker' in navigator) {
   navigator.serviceWorker
-    .register('/sw.js')
+    .register('/iphosha/sw.js')
     .then((registration) => {
       console.log('Service Worker зарегистрирован:', registration);
     })
