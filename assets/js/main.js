@@ -387,10 +387,15 @@
 			// Код pwa.
 
 			if ('serviceWorker' in navigator) {
-			  navigator.serviceWorker.register('/sw.js')
-				.then(() => console.log('Service Worker зарегистрирован'))
-				.catch((err) => console.error('Ошибка регистрации Service Worker:', err));
-			}
+  navigator.serviceWorker
+    .register('/sw.js')
+    .then((registration) => {
+      console.log('Service Worker зарегистрирован:', registration);
+    })
+    .catch((error) => {
+      console.error('Ошибка регистрации Service Worker:', error);
+    });
+}
 
 		// Initialize.
 
