@@ -153,7 +153,7 @@
 							  <!-- Модель телефона -->
 							  <div class="form-group">
 								<select id="model" onchange="updateMemoryOptions(); updateSIMOptions(); calculatePrice();">
-								  <option value="">Обери модель телефону</option>
+								  <option value="">Оберіть модель телефону</option>
 								  <option value="iPhone 8">iPhone 8</option>
 								  <option value="iPhone 8 Plus">iPhone 8 Plus</option>
 								  <option value="iPhone X">iPhone X</option>
@@ -187,24 +187,24 @@
 							  <!-- Обсяг пам'яті -->
 							  <div class="form-group">
 								<select id="memory" onchange="calculatePrice()">
-								  <option value="">Обери обсяг пам'яті</option>
+								  <option value="">Оберіть обсяг пам'яті</option>
 								</select>
 							  </div>
 						
 							  <!-- Стан телефону -->
 							  <div class="form-group">
 								<select id="condition" onchange="calculatePrice()">
-								  <option value="">Обери стан</option>
-								  <option value="Ідеальний">Ідеальний</option>
-								  <option value="Гарний стан">Гарний стан</option>
-								  <option value="Зі слідами використання">Зі слідами використання</option>
+								  <option value="">Оберіть стан</option>
+								  <option value="Ідеальний">А+ | Ідеальний </option>
+								  <option value="Гарний стан">А  | Гарний стан (Незначні потертості/подряпини </option>
+								  <option value="Зі слідами використання">B  | Вживаний (Значні потертості/подряпини/невеликі сколи)</option>
 								</select>
 							  </div>
 						
 							  <!-- Стан акумулятора -->
 							  <div class="form-group">
 								<select id="battery" onchange="calculatePrice()">
-								  <option value="">Обери стан акумулятора</option>
+								  <option value="">Оберіть стан акумулятора</option>
 								  <option value="87-100%">87-100%</option>
 								  <option value="79-86%">79-86%</option>
 								</select>
@@ -213,7 +213,7 @@
 							  <!-- Версія сім -->
 							  <div class="form-group">
 								<select id="sim" onchange="calculatePrice()">
-								  <option value="">Обери тип SIM-карти</option>
+								  <option value="">Оберіть тип SIM-карти</option>
 								</select>
 							  </div>
 						
@@ -222,7 +222,7 @@
 							<!-- Вывод цены -->
 							<center>
 							  <div id="final-price-container">
-								<p><a class="button primary"><span id="final-price">Будь ласка, заповніть всі опції.</span></a></p>
+								<p><a class="button primary"><span id="final-price">Будь ласка, заповніть всі форми.</span></a></p>
 							  </div>
 							</center>
 						  </div>
@@ -233,22 +233,18 @@
 						const prices = {
 						  "iPhone 8": {
 							"64GB": 3000,
-							"128GB": 3500,
 							"256GB": 4000,
 						  },
 						  "iPhone 8 Plus": {
 							"64GB": 3500,
-							"128GB": 4000,
 							"256GB": 4500,
 						  },
 						  "iPhone X": {
-							"64GB": 4000,
-							"128GB": 4500,
-							"256GB": 5000,
+							"64GB": 5450,
+							"256GB": 6700,
 						  },
 						  "iPhone XS": {
 							"64GB": 4500,
-							"128GB": 5000,
 							"256GB": 5500,
 						  },
 						  // Добавьте другие модели и их цены
@@ -265,15 +261,15 @@
 						const batteryDeductions = {
 						  "iPhone 8": {
 							"87-100%": 0,
-							"79-86%": 100,
+							"79-86%": 800,
 						  },
 						  "iPhone 8 Plus": {
 							"87-100%": 0,
-							"79-86%": 100,
+							"79-86%": 900,
 						  },
 						  "iPhone X": {
 							"87-100%": 0,
-							"79-86%": 150,
+							"79-86%": 1200,
 						  },
 						  // Добавьте другие модели и их батареи
 						};
@@ -285,11 +281,10 @@
 						  },
 						  "iPhone 8 Plus": {
 							"SIM": 0,
-							"eSIM": 100,
 						  },
 						  "iPhone X": {
 							"SIM": 0,
-							"eSIM": 150, // 150 грн для eSIM
+							"eSIM": -500, // 150 грн для eSIM
 						  },
 						  "iPhone XS": {
 							"SIM": 0,
@@ -395,7 +390,7 @@
 						  const memorySelect = document.getElementById("memory");
 						
 						 // Очистить текущие опции памяти
-						   memorySelect.innerHTML = "<option value=''>Обери обсяг пам'яті</option>";
+						   memorySelect.innerHTML = "<option value=''>Оберіть обсяг пам'яті</option>";
 						 
 						   // Добавить доступные опции памяти для выбранной модели
 						   if (model && prices[model]) {
@@ -417,7 +412,7 @@
 						   const simSelect = document.getElementById("sim");
 						 
 						   // Очистить текущие опции SIM
-						   simSelect.innerHTML = "<option value=''>Обери тип SIM-карти</option>";
+						   simSelect.innerHTML = "<option value=''>Оберіть тип SIM-карти</option>";
 						 
 						   // Добавить доступные опции SIM для выбранной модели
 						   if (model && simModifiers[model]) {
@@ -465,7 +460,7 @@
 						 
 						   // Если все поля не заполнены, показываем сообщение
 						   if (!model || !memory || !condition || !battery || !document.getElementById("sim").value) {
-							 document.getElementById("final-price").textContent = "Будь ласка, заповніть всі опції.";
+							 document.getElementById("final-price").textContent = "Будь ласка, заповніть всі форми.";
 						   } else {
 							 calculatePrice();
 						   }
