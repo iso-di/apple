@@ -878,6 +878,20 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+<script>
+	if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/sw.js') // Убедитесь, что путь правильный
+      .then((registration) => {
+        console.log('Service Worker зарегистрирован с областью:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Ошибка регистрации Service Worker:', error);
+      });
+  });
+}
+</script>
 
 	</body>
 </html>
