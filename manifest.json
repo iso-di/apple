@@ -1,6 +1,6 @@
 {
-  "name": "iPhosha ",
-  "short_name": "iPhosha ",
+  "name": "iPhosha",
+  "short_name": "iPhosha Store",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
