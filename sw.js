@@ -3,7 +3,6 @@ const urlsToCache = [
   '/',
   '/index.html',
   '/manifest.json',
-    '/assets/css/mani.js',
   '/icon-192x192.png',
   '/icon-512x512.png',
 ];
