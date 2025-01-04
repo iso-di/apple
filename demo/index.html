@@ -541,7 +541,65 @@
         </div>
     </center>
 </div>
-</script>
+<skript>
+	let selectedModel = "";
+let selectedMemory = "";
+let selectedCondition = "";
+let selectedBattery = "";
+let selectedSim = "";
+
+function setModel(model) {
+    selectedModel = model;
+    updateDisplay();
+    calculatePrice();
+}
+
+function setMemory(memory) {
+    selectedMemory = memory;
+    updateDisplay();
+    calculatePrice();
+}
+
+function setCondition(condition) {
+    selectedCondition = condition;
+    updateDisplay();
+    calculatePrice();
+}
+
+function setBattery(battery) {
+    selectedBattery = battery;
+    updateDisplay();
+    calculatePrice();
+}
+
+function setSim(sim) {
+    selectedSim = sim;
+    updateDisplay();
+    calculatePrice();
+}
+
+function updateDisplay() {
+    const displayElement = document.getElementById("final-price");
+    if (selectedModel && selectedMemory && selectedCondition && selectedBattery && selectedSim) {
+        displayElement.textContent = `Вы выбрали: ${selectedModel}, ${selectedMemory}, ${selectedCondition}, ${selectedBattery}, ${selectedSim}`;
+    } else {
+        displayElement.textContent = "Пожалуйста, выберите все параметры.";
+    }
+}
+
+function calculatePrice() {
+    if (!selectedModel || !selectedMemory || !selectedCondition || !selectedBattery || !selectedSim) return;
+
+    // Простая логика расчета цены (пример)
+    let basePrice = 10000; // Базовая цена
+    if (selectedModel.includes("iPhone 14")) basePrice += 5000;
+    if (selectedMemory === "128GB") basePrice += 2000;
+    if (selectedCondition === "Хорошее") basePrice -= 1000;
+    if (selectedBattery === "79-86%") basePrice -= 2000;
+
+    document.getElementById("final-price").textContent = `Оценочная стоимость: ${basePrice} руб.`;
+}
+</skript></script>
 						<!-- Work -->
 							<article id="o4">
 							  <h2 class="major">Монобанк</h2>
