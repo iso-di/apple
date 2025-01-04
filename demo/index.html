@@ -482,185 +482,65 @@
 
 <article id="buyback">
   <div class="container">
-    <h2 class="major">Викуп iPhone</h2>
-    <form>
-      <!-- Модель телефона -->
-      <div class="form-group">
-        <select id="buyback-model" onchange="updateBuybackMemoryOptions(); updateBuybackSIMOptions(); calculateBuybackPrice();">
-          <option value="">Обери модель телефону</option>
-          <option value="iPhone 8">iPhone 8</option>
-          <option value="iPhone X">iPhone X</option>
-          <option value="iPhone 11">iPhone 11</option>
-          <option value="iPhone 12">iPhone 12</option>
-          <option value="iPhone 13">iPhone 13</option>
-          <option value="iPhone 14">iPhone 14</option>
-          <option value="iPhone 15">iPhone 15</option>
-        </select>
-      </div>
+    <h2 class="major">Оценка Trade-In</h2>
+    
+    <!-- Модель телефона -->
+    <div class="form-group">
+        <label>Выберите модель телефона:</label>
+        <div id="model-buttons">
+            <button onclick="setModel('iPhone 8')">iPhone 8</button>
+            <button onclick="setModel('iPhone X')">iPhone X</button>
+            <button onclick="setModel('iPhone 14 Pro')">iPhone 14 Pro</button>
+            <button onclick="setModel('iPhone 15')">iPhone 15</button>
+            <!-- Добавьте остальные модели -->
+        </div>
+    </div>
 
-      <!-- Обсяг пам'яті -->
-      <div class="form-group">
-        <select id="buyback-memory" onchange="calculateBuybackPrice()">
-          <option value="">Обери обсяг пам'яті</option>
-        </select>
-      </div>
+    <!-- Объем памяти -->
+    <div class="form-group">
+        <label>Выберите объем памяти:</label>
+        <div id="memory-buttons">
+            <button onclick="setMemory('64GB')">64GB</button>
+            <button onclick="setMemory('128GB')">128GB</button>
+            <button onclick="setMemory('256GB')">256GB</button>
+            <button onclick="setMemory('512GB')">512GB</button>
+        </div>
+    </div>
 
-      <!-- Тип SIM-карти -->
-      <div class="form-group">
-        <select id="buyback-sim" onchange="calculateBuybackPrice()">
-          <option value="">Обери тип SIM-карти</option>
-        </select>
-      </div>
-    </form>
+    <!-- Состояние телефона -->
+    <div class="form-group">
+        <label>Выберите состояние телефона:</label>
+        <div id="condition-buttons">
+            <button onclick="setCondition('Идеальное')">Идеальное</button>
+            <button onclick="setCondition('Хорошее')">Хорошее</button>
+        </div>
+    </div>
+
+    <!-- Состояние аккумулятора -->
+    <div class="form-group">
+        <label>Выберите состояние аккумулятора:</label>
+        <div id="battery-buttons">
+            <button onclick="setBattery('87-100%')">87-100%</button>
+            <button onclick="setBattery('79-86%')">79-86%</button>
+        </div>
+    </div>
+
+    <!-- Тип SIM -->
+    <div class="form-group">
+        <label>Выберите тип SIM-карты:</label>
+        <div id="sim-buttons">
+            <button onclick="setSim('Физическая SIM')">Физическая SIM</button>
+            <button onclick="setSim('eSIM')">eSIM</button>
+        </div>
+    </div>
 
     <!-- Вывод цены -->
     <center>
-      <div id="buyback-final-price-container">
-        <p><a class="button primary"><span id="buyback-final-price">Будь ласка, заповніть всі опції.</span></a></p>
-      </div>
+        <div id="final-price-container">
+            <p><a class="button primary"><span id="final-price">Пожалуйста, выберите все параметры.</span></a></p>
+        </div>
     </center>
-  </div>
-</article>
-
-<script>
-// Цены для моделей Buyback
-const buybackPrices = {
-  "iPhone 8": {
-    "64GB": 2500,
-    "128GB": 3000,
-    "256GB": 3500,
-  },
-  "iPhone X": {
-    "64GB": 3500,
-    "128GB": 4000,
-    "256GB": 4500,
-  },
-  "iPhone 11": {
-    "64GB": 4500,
-    "128GB": 5000,
-    "256GB": 5500,
-  },
-  "iPhone 12": {
-    "64GB": 5500,
-    "128GB": 6000,
-    "256GB": 6500,
-  },
-  "iPhone 13": {
-    "64GB": 6500,
-    "128GB": 7000,
-    "256GB": 7500,
-  },
-  "iPhone 14": {
-    "64GB": 7500,
-    "128GB": 8000,
-    "256GB": 8500,
-  },
-  "iPhone 15": {
-    "128GB": 9000,
-    "256GB": 9500,
-    "512GB": 10000,
-  },
-};
-
-// Дополнительные модификаторы для SIM
-const buybackSIMModifiers = {
-  "iPhone 8": {
-    "SIM": 0,
-  },
-  "iPhone X": {
-    "SIM": 0,
-    "eSIM": 250,
-  },
-  "iPhone 11": {
-    "SIM": 0,
-    "eSIM": 300,
-  },
-  "iPhone 12": {
-    "SIM": 0,
-    "eSIM": 350,
-  },
-  "iPhone 13": {
-    "SIM": 0,
-    "eSIM": 400,
-  },
-  "iPhone 14": {
-    "SIM": 0,
-    "eSIM": 450,
-  },
-  "iPhone 15": {
-    "SIM": 0,
-    "eSIM": 500,
-  },
-};
-
-// Обновление опций памяти в зависимости от модели
-function updateBuybackMemoryOptions() {
-  const model = document.getElementById("buyback-model").value;
-  const memorySelect = document.getElementById("buyback-memory");
-
-  // Очистить текущие опции памяти
-  memorySelect.innerHTML = "<option value=''>Обери обсяг пам'яті</option>";
-
-  // Добавить доступные опции памяти для выбранной модели
-  if (model && buybackPrices[model]) {
-    Object.keys(buybackPrices[model]).forEach(memory => {
-      const option = document.createElement("option");
-      option.value = memory;
-      option.textContent = memory;
-      memorySelect.appendChild(option);
-    });
-  }
-}
-
-// Обновление опций SIM-карт в зависимости от модели
-function updateBuybackSIMOptions() {
-  const model = document.getElementById("buyback-model").value;
-  const simSelect = document.getElementById("buyback-sim");
-
-  // Очистить текущие опции SIM
-  simSelect.innerHTML = "<option value=''>Обери тип SIM-карти</option>";
-
-  // Добавить доступные опции SIM для выбранной модели
-  if (model && buybackSIMModifiers[model]) {
-    Object.keys(buybackSIMModifiers[model]).forEach(simType => {
-      const option = document.createElement("option");
-      option.value = simType;
-      option.textContent = simType;
-      simSelect.appendChild(option);
-    });
-  }
-}
-
-// Вычисление цены
-function calculateBuybackPrice() {
-  const model = document.getElementById("buyback-model").value;
-  const memory = document.getElementById("buyback-memory").value;
-  const sim = document.getElementById("buyback-sim").value;
-
-  if (model && memory && sim) {
-    const basePrice = buybackPrices[model] && buybackPrices[model][memory];
-
-    if (basePrice !== undefined) {
-      let finalPrice = basePrice;
-
-      // Добавить наценку за тип SIM
-      finalPrice += buybackSIMModifiers[model] && buybackSIMModifiers[model][sim] || 0;
-
-      // Обновить отображаемую цену
-      document.getElementById("buyback-final-price").textContent =
-        "Оцінка викупу: " + finalPrice.toFixed(2) + " грн";
-    }
-  } else {
-    // Если не все поля заполнены
-    document.getElementById("buyback-final-price").textContent =
-      "Будь ласка, заповніть всі опції.";
-  }
-}
-
-// Добавить обработчики событий для изменения полей
-document.querySelectorAll("#buyback-model, #buyback-memory, #buyback-sim").forEach(select => {
-  select.addEventListener("change", calculateBuybackPrice);
-});
+</div>
 </script>
 						<!-- Work -->
 							<article id="o4">
