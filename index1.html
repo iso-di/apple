@@ -122,27 +122,36 @@
         .menu-button {
             position: fixed;
             top: 20px;
-            right: 20px;
+            left: 50%; /* Центрируем кнопку */
+            transform: translateX(-50%); /* Точное центрирование */
             background-color: #007aff;
             color: #ffffff;
             border: none;
             padding: 10px 20px;
-            border-radius: 8px;
+            border-radius: 50%; /* Делаем круглую кнопку */
             cursor: pointer;
-            font-size: 16px;
+            font-size: 24px; /* Увеличиваем размер символа */
             z-index: 1000;
+            width: 50px; /* Фиксированная ширина */
+            height: 50px; /* Фиксированная высота */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Тень для кнопки */
         }
 
         .menu-dropdown {
             position: fixed;
-            top: 60px;
-            right: 20px;
+            top: 80px; /* Отступ от кнопки */
+            left: 50%;
+            transform: translateX(-50%); /* Центрируем меню */
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 10px;
             z-index: 1000;
             display: none;
+            width: 200px; /* Ширина меню */
         }
 
         .menu-dropdown a {
@@ -185,12 +194,23 @@
             select {
                 font-size: 14px;
             }
+
+            .menu-button {
+                top: 10px; /* Меньший отступ для мобильных устройств */
+                font-size: 20px; /* Уменьшаем размер символа */
+                width: 40px;
+                height: 40px;
+            }
+
+            .menu-dropdown {
+                top: 60px; /* Меньший отступ для мобильных устройств */
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Кнопка меню -->
-    <button class="menu-button" onclick="toggleMenu()">Меню</button>
+    <!-- Кнопка меню с символом Apple -->
+    <button class="menu-button" onclick="toggleMenu()"></button>
     <div class="menu-dropdown" id="menuDropdown">
         <a href="#">Категория 1</a>
         <a href="#">Категория 2</a>
