@@ -14,26 +14,6 @@
             color: #1d1d1f;
         }
 
-        header {
-            background-color: #ffffff;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            font-size: 32px;
-            font-weight: 600;
-            margin: 0;
-            color: #1d1d1f;
-        }
-
-        header p {
-            font-size: 18px;
-            color: #6e6e73;
-            margin: 10px 0 0;
-        }
-
         .container {
             max-width: 800px;
             margin: 40px auto;
@@ -111,6 +91,59 @@
             display: none;
         }
 
+        /* Стили для выпадающего списка */
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e6;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+        }
+
+        /* Стили для выпадающего меню */
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #007aff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 1000;
+        }
+
+        .menu-dropdown {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .menu-dropdown a {
+            display: block;
+            padding: 10px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-dropdown a:hover {
+            background-color: #f5f5f7;
+        }
+
         /* Анимации */
         @keyframes fadeIn {
             from {
@@ -126,198 +159,236 @@
         .fade-in {
             animation: fadeIn 0.3s ease-out;
         }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .button-group button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            select {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
-<header>
-    <h1>Оценка телефона</h1>
-    <p>Выберите параметры для оценки</p>
-</header>
-<div class="container">
-    <div class="form-container">
-        <h2>Оценить телефон</h2>
-        <form id="evaluation-form">
-            <!-- Выбор модели -->
-            <div class="button-group" id="model-group">
-                <h3>Модель телефона:</h3>
-                <button type="button" data-model="iPhone 15">iPhone 15</button>
-                <button type="button" data-model="iPhone 14">iPhone 14</button>
-                <button type="button" data-model="iPhone 13">iPhone 13</button>
-                <button type="button" data-model="Samsung S23">Samsung S23</button>
-                <button type="button" data-model="Xiaomi 13">Xiaomi 13</button>
-            </div>
-
-            <!-- Выбор объема памяти (скрыт по умолчанию) -->
-            <div class="button-group hidden" id="storage-group">
-                <h3>Объем памяти:</h3>
-                <!-- Кнопки будут добавлены динамически -->
-            </div>
-
-            <!-- Выбор состояния аккумулятора (скрыт по умолчанию) -->
-            <div class="button-group hidden" id="battery-group">
-                <h3>Состояние аккумулятора:</h3>
-                <button type="button" data-battery="100-87">100-87%</button>
-                <button type="button" data-battery="87-80">87-80%</button>
-            </div>
-
-            <!-- Выбор типа SIM (скрыт по умолчанию) -->
-            <div class="button-group hidden" id="sim-group">
-                <h3>Тип SIM-карты:</h3>
-                <button type="button" data-sim="esim">eSIM</button>
-                <button type="button" data-sim="regular">Обычная SIM</button>
-            </div>
-
-            <!-- Блок с итоговой суммой (скрыт по умолчанию) -->
-            <div class="result hidden" id="total-price">
-                <p>Итоговая стоимость:</p>
-                <div class="total-price">$0.00</div>
-            </div>
-        </form>
+    <!-- Кнопка меню -->
+    <button class="menu-button" onclick="toggleMenu()">Меню</button>
+    <div class="menu-dropdown" id="menuDropdown">
+        <a href="#">Категория 1</a>
+        <a href="#">Категория 2</a>
+        <a href="#">Категория 3</a>
     </div>
-</div>
 
-<script>
-    // Данные для оценки
-    const prices = {
-        "iPhone 15": {
-            base: 1000,
-            storage: { 64: 0, 128: 50, 256: 100, 512: 200 },
-            battery: { "100-87": 0, "87-80": -100 },
-            hasSim: true,
-        },
-        "iPhone 14": {
-            base: 800,
-            storage: { 64: 0, 128: 50, 256: 100, 512: 200 },
-            battery: { "100-87": 0, "87-80": -80 },
-            hasSim: true,
-        },
-        "iPhone 13": {
-            base: 600,
-            storage: { 64: 0, 128: 50, 256: 100, 512: 200 },
-            battery: { "100-87": 0, "87-80": -60 },
-            hasSim: true,
-        },
-        "Samsung S23": {
-            base: 900,
-            storage: { 128: 0, 256: 100, 512: 200 },
-            battery: { "100-87": 0, "87-80": -90 },
-            hasSim: false,
-        },
-        "Xiaomi 13": {
-            base: 500,
-            storage: { 128: 0, 256: 100, 512: 200 },
-            battery: { "100-87": 0, "87-80": -50 },
-            hasSim: false,
-        },
-    };
+    <div class="container">
+        <div class="form-container">
+            <h2>Оценить телефон</h2>
+            <form id="evaluation-form">
+                <!-- Выбор модели -->
+                <div class="button-group" id="model-group">
+                    <h3>Модель телефона:</h3>
+                    <select id="model-select">
+                        <option value="">Выберите модель</option>
+                        <option value="iPhone 15">iPhone 15</option>
+                        <option value="iPhone 14">iPhone 14</option>
+                        <option value="iPhone 13">iPhone 13</option>
+                        <option value="Samsung S23">Samsung S23</option>
+                        <option value="Xiaomi 13">Xiaomi 13</option>
+                    </select>
+                </div>
 
-    const simMultipliers = {
-        esim: 1,
-        regular: 0.95,
-    };
+                <!-- Выбор объема памяти (скрыт по умолчанию) -->
+                <div class="button-group hidden" id="storage-group">
+                    <h3>Объем памяти:</h3>
+                    <!-- Кнопки будут добавлены динамически -->
+                </div>
 
-    // Элементы формы
-    const modelGroup = document.getElementById('model-group');
-    const storageGroup = document.getElementById('storage-group');
-    const batteryGroup = document.getElementById('battery-group');
-    const simGroup = document.getElementById('sim-group');
-    const totalPriceDiv = document.getElementById('total-price');
-    const totalPriceValue = totalPriceDiv.querySelector('.total-price');
+                <!-- Выбор состояния аккумулятора (скрыт по умолчанию) -->
+                <div class="button-group hidden" id="battery-group">
+                    <h3>Состояние аккумулятора:</h3>
+                    <button type="button" data-battery="100-87" title="Отличное состояние аккумулятора">100-87%</button>
+                    <button type="button" data-battery="87-80" title="Хорошее состояние аккумулятора">87-80%</button>
+                </div>
 
-    // Сброс формы
-    function resetForm() {
-        storageGroup.classList.add('hidden');
-        batteryGroup.classList.add('hidden');
-        simGroup.classList.add('hidden');
-        totalPriceDiv.classList.add('hidden');
+                <!-- Выбор типа SIM (скрыт по умолчанию) -->
+                <div class="button-group hidden" id="sim-group">
+                    <h3>Тип SIM-карты:</h3>
+                    <button type="button" data-sim="esim">eSIM</button>
+                    <button type="button" data-sim="regular">Обычная SIM</button>
+                </div>
 
-        document.querySelectorAll('.button-group button.active').forEach(button => {
-            button.classList.remove('active');
-        });
+                <!-- Блок с итоговой суммой (скрыт по умолчанию) -->
+                <div class="result hidden" id="total-price">
+                    <p>Итоговая стоимость:</p>
+                    <div class="total-price">0 ₽</div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-        totalPriceValue.textContent = '$0.00';
-    }
+    <script>
+        // Данные для оценки
+        const prices = {
+            "iPhone 15": {
+                storage: { 64: 80000, 128: 85000, 256: 90000, 512: 100000 },
+                battery: { "100-87": 0, "87-80": -5000 },
+                hasSim: true,
+            },
+            "iPhone 14": {
+                storage: { 64: 70000, 128: 75000, 256: 80000, 512: 90000 },
+                battery: { "100-87": 0, "87-80": -4000 },
+                hasSim: true,
+            },
+            "iPhone 13": {
+                storage: { 64: 60000, 128: 65000, 256: 70000, 512: 80000 },
+                battery: { "100-87": 0, "87-80": -3000 },
+                hasSim: true,
+            },
+            "Samsung S23": {
+                storage: { 128: 75000, 256: 85000, 512: 95000 },
+                battery: { "100-87": 0, "87-80": -4500 },
+                hasSim: false,
+            },
+            "Xiaomi 13": {
+                storage: { 128: 40000, 256: 50000, 512: 60000 },
+                battery: { "100-87": 0, "87-80": -2500 },
+                hasSim: false,
+            },
+        };
 
-    // Обновление вариантов объема памяти
-    function updateStorageOptions(model) {
-        const storageOptions = prices[model].storage;
-        storageGroup.innerHTML = '<h3>Объем памяти:</h3>'; // Очищаем предыдущие кнопки
+        const simMultipliers = {
+            esim: 1,
+            regular: 0.95,
+        };
 
-        for (const storage in storageOptions) {
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.textContent = `${storage} ГБ`;
-            button.dataset.storage = storage;
-            storageGroup.appendChild(button);
+        // Элементы формы
+        const modelSelect = document.getElementById('model-select');
+        const storageGroup = document.getElementById('storage-group');
+        const batteryGroup = document.getElementById('battery-group');
+        const simGroup = document.getElementById('sim-group');
+        const totalPriceDiv = document.getElementById('total-price');
+        const totalPriceValue = totalPriceDiv.querySelector('.total-price');
+
+        // Сброс формы
+        function resetForm() {
+            storageGroup.classList.add('hidden');
+            batteryGroup.classList.add('hidden');
+            simGroup.classList.add('hidden');
+            totalPriceDiv.classList.add('hidden');
+
+            resetActiveButtons(storageGroup);
+            resetActiveButtons(batteryGroup);
+            resetActiveButtons(simGroup);
+
+            totalPriceValue.textContent = '0 ₽';
         }
 
-        // Добавляем обработчики событий для новых кнопок
-        storageGroup.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', () => {
-                storageGroup.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                batteryGroup.classList.remove('hidden');
-                batteryGroup.classList.add('fade-in');
-                updateTotalPrice();
+        // Сброс активных кнопок
+        function resetActiveButtons(container) {
+            container.querySelectorAll('button.active').forEach(button => {
+                button.classList.remove('active');
             });
-        });
-    }
+        }
 
-    // Обновление итоговой суммы
-    function updateTotalPrice() {
-        const model = modelGroup.querySelector('button.active')?.dataset.model;
-        const storage = storageGroup.querySelector('button.active')?.dataset.storage;
-        const battery = batteryGroup.querySelector('button.active')?.dataset.battery;
-        const sim = simGroup.querySelector('button.active')?.dataset.sim;
+        // Обновление вариантов объема памяти
+        function updateStorageOptions(model) {
+            const storageOptions = prices[model].storage;
+            storageGroup.innerHTML = '<h3>Объем памяти:</h3>'; // Очищаем предыдущие кнопки
 
-        if (model && storage && battery) {
-            const basePrice = prices[model].base;
-            const storagePrice = prices[model].storage[storage] || 0;
+            for (const storage in storageOptions) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = `${storage} ГБ`;
+                button.dataset.storage = storage;
+                storageGroup.appendChild(button);
+            }
+
+            // Добавляем обработчики событий для новых кнопок
+            storageGroup.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', () => {
+                    resetActiveButtons(storageGroup);
+                    button.classList.add('active');
+                    batteryGroup.classList.remove('hidden');
+                    batteryGroup.classList.add('fade-in');
+                    updateTotalPrice();
+                });
+            });
+        }
+
+        // Обновление итоговой суммы
+        function updateTotalPrice() {
+            const model = modelSelect.value;
+            const storage = storageGroup.querySelector('button.active')?.dataset.storage;
+            const battery = batteryGroup.querySelector('button.active')?.dataset.battery;
+            const sim = simGroup.querySelector('button.active')?.dataset.sim;
+
+            if (!model || !storage || !battery || (prices[model]?.hasSim && !sim)) {
+                totalPriceDiv.classList.add('hidden');
+                return;
+            }
+
+            const basePrice = prices[model].storage[storage] || 0;
             const batteryPrice = prices[model].battery[battery] || 0;
             const simMultiplier = sim ? simMultipliers[sim] : 1;
 
-            const totalPrice = (basePrice + storagePrice + batteryPrice) * simMultiplier;
-            totalPriceValue.textContent = `$${totalPrice.toFixed(2)}`;
+            const totalPrice = (basePrice + batteryPrice) * simMultiplier;
+            totalPriceValue.textContent = `${totalPrice.toFixed(0)} ₽`;
             totalPriceDiv.classList.remove('hidden');
             totalPriceDiv.classList.add('fade-in');
         }
-    }
 
-    // Выбор модели
-    modelGroup.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', () => {
+        // Выбор модели
+        modelSelect.addEventListener('change', () => {
             resetForm();
-            button.classList.add('active');
-            updateStorageOptions(button.dataset.model); // Обновляем варианты памяти
-            storageGroup.classList.remove('hidden');
-            storageGroup.classList.add('fade-in');
-        });
-    });
-
-    // Выбор состояния аккумулятора
-    batteryGroup.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', () => {
-            batteryGroup.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            const selectedModel = modelGroup.querySelector('button.active')?.dataset.model;
-            if (prices[selectedModel]?.hasSim) {
-                simGroup.classList.remove('hidden');
-                simGroup.classList.add('fade-in');
-            } else {
-                updateTotalPrice();
+            if (modelSelect.value) {
+                updateStorageOptions(modelSelect.value);
+                storageGroup.classList.remove('hidden');
+                storageGroup.classList.add('fade-in');
             }
         });
-    });
 
-    // Выбор типа SIM
-    simGroup.querySelectorAll('button').forEach(button => {
-        button.addEventListener('click', () => {
-            simGroup.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            updateTotalPrice();
+        // Выбор состояния аккумулятора
+        batteryGroup.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                resetActiveButtons(batteryGroup);
+                button.classList.add('active');
+
+                const selectedModel = modelSelect.value;
+                if (prices[selectedModel]?.hasSim) {
+                    simGroup.classList.remove('hidden');
+                    simGroup.classList.add('fade-in');
+                } else {
+                    simGroup.classList.add('hidden');
+                    updateTotalPrice();
+                }
+            });
         });
-    });
-</script>
+
+        // Выбор типа SIM
+        simGroup.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                resetActiveButtons(simGroup);
+                button.classList.add('active');
+                updateTotalPrice();
+            });
+        });
+
+        // Функция для показа/скрытия меню
+        function toggleMenu() {
+            const menuDropdown = document.getElementById('menuDropdown');
+            menuDropdown.style.display = menuDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Закрытие меню при клике вне его
+        window.addEventListener('click', (event) => {
+            const menuDropdown = document.getElementById('menuDropdown');
+            const menuButton = document.querySelector('.menu-button');
+            if (event.target !== menuButton && !menuButton.contains(event.target) && event.target !== menuDropdown && !menuDropdown.contains(event.target)) {
+                menuDropdown.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
