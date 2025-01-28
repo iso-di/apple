@@ -107,8 +107,8 @@
     }
 
     input {
-      width: 100%;
-      padding: 12px;
+      margin-top: 20px;
+      padding: 20px;
       margin-top: 10px;
       border-radius: 8px;
       border: 1px solid #e0e0e6;
@@ -268,9 +268,9 @@
 
     if (!isNaN(X) && !isNaN(divideBy) && X > 0) {
       const Y = X + (X * (percentage / 100));
-      document.getElementById("formula1").textContent = `Загальна вартість по 1С: ${Y.toFixed(2)} ₴`;
+      document.getElementById("formula1").textContent = `Вартість по 1С: ${Y.toFixed(2)} ₴`;
       const result = Y / divideBy;
-      document.getElementById("result1").textContent = `Щомісячний платіж: ${result.toFixed(2)} ₴`;
+      document.getElementById("result1").textContent = `Платіж на міс.: ${result.toFixed(2)} ₴`;
     } else {
       document.getElementById("formula1").textContent = "";
       document.getElementById("result1").textContent = "";
