@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Схема перевірки телефона</title>
+  <style>
+    /* Общие стили */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f7;
+      color: #1d1d1f;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1d1d1f;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo::before {
+      content: "";
+      font-size: 28px;
+      margin-right: 10px;
+    }
+
+    .menu-button {
+      background-color: #007aff;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-dropdown {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      z-index: 1000;
+      display: none;
+      width: 200px;
+    }
+
+    .menu-dropdown a {
+      display: block;
+      padding: 10px;
+      color: #1d1d1f;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-dropdown a:hover {
+      background-color: #f5f5f7;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 120px auto 40px;
+      padding: 0 20px;
+    }
+
+    .info-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .info-container h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 0;
+      color: #1d1d1f;
+      text-align: center;
+    }
+
+    .info-container ol {
+      padding-left: 20px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #1d1d1f;
+    }
+
+    .info-container ol li {
+      margin-bottom: 10px;
+    }
+
+    .info-container ol li b {
+      color: #007aff;
+    }
+
+    .info-container ol li a {
+      color: #007aff;
+      text-decoration: none;
+    }
+
+    .info-container ol li a:hover {
+      text-decoration: underline;
+    }
+
+    .warning {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      color: red;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      .menu-button {
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+      }
+
+      .menu-dropdown {
+        top: 60px;
+      }
+
+      .container {
+        margin-top: 100px;
+      }
+
+      .info-container ol {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Шапка сайта -->
+<div class="header">
+  <div class="logo">АЙФОША</div>
+  <button class="menu-button" onclick="toggleMenu()">☰</button>
+  <div class="menu-dropdown" id="menuDropdown">
+    <a href="/oplatabank.html">Розрахунок ОЧ</a>
+    <a href="/testiphone.html">Перевірка iPhone</a>
+    <a href="/testmac.html">Перевірка MacBook</a>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Информационный блок -->
+  <div class="info-container">
+    <h2>Схема перевірки</h2>
+    <ol>
+      <li>Уточнити у клієнта, що змінювалося в телефоні, чи був він у ремонті?</li>
+      <li>Перевірка телефона на розшук за базою <a href="https://wanted.mvs.gov.ua/searchthing">МВД</a></li>
+      <li>Підключення телефона до програми <b>3uTools</b></li>
+      <li>Оцінка зовнішнього стану (ГНУТОСТЬ КОРПУСА, сколы, подряпини, вмятини, тріщини)</li>
+      <li>Перевірка наявності болтів і цілісність сіточок динаміків (верхніх і нижніх)</li>
+      <li>Перевірка на наявність люфту екрана з корпусом</li>
+      <li>Перевірка екрана на оригінальність (товщина рамок, колір матриці повинен бути чорним, не сірим)</li>
+      <li>Перевірка працездатності всіх кнопок (на залипання, западання)</li>
+      <li>Вставляємо SIM-карту і слідкуємо, щоб не пропадала мережа</li>
+      <li>Включаємо дисплей на максимальну яскравість і перевіряємо на мертві зони</li>
+      <li>Перевірка дисплея на працездатність True Tone</li>
+      <li>Перевірка дисплея на плями, засвічення на білому та чорному фоні</li>
+      <li>Перевірка дисплея під кутом (щоб не було плям)</li>
+      <li>Перевірка камери (основної, фронтальної) на наявність плям у портретному режимі та пилу</li>
+      <li>Перевірка мікрофонів камери (основної, фронтальної, запис пробного відео зі звуком)</li>
+      <li>Перевірка мікрофона диктофона та перевірка компаса</li>
+      <li>Перевірка навушників (вставляємо навушники і перевіряємо працездатність)</li>
+      <li>Перевірка вібрації (Повзунок включення беззвучного режиму)</li>
+      <li>Перевірка роз'ємів навушників і зарядки (підключаємо навушники і зарядку)</li>
+      <li>Перевірка стану АКБ (щоб не було прочерка)</li>
+      <li>Працездатність Wi-Fi та Bluetooth</li>
+      <li>Перевірка функції Touch ID/Face ID</li>
+      <li>Тестовий дзвінок, перевіряємо на гучному та звичайному зв'язку, датчик затемнення</li>
+      <li>Перевірка функції Apple Pay</li>
+      <li>Перевірити звук (звучання верхнього та нижнього динаміка)</li>
+    </ol>
+    <div class="warning">
+      При покупці телефона клієнта обов'язково робимо скидання контенту та налаштувань і активуємо через SIM-карту!
+    </div>
+  </div>
+</div>
+
+<script>
+  // Функция для показа/скрытия меню
+  function toggleMenu() {
+    const menuDropdown = document.getElementById("menuDropdown");
+    menuDropdown.style.display = menuDropdown.style.display === "block" ? "none" : "block";
+  }
+
+  // Закрытие меню при клике вне его
+  window.addEventListener("click", (event) => {
+    const menuDropdown = document.getElementById("menuDropdown");
+    const menuButton = document.querySelector(".menu-button");
+    if (event.target !== menuButton && !menuButton.contains(event.target) && event.target !== menuDropdown && !menuDropdown.contains(event.target)) {
+      menuDropdown.style.display = "none";
+    }
+  });
+</script>
+</body>
+</html>

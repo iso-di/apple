@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Перевірка MacBook</title>
+  <style>
+    /* Общие стили */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f7;
+      color: #1d1d1f;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #ffffff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1d1d1f;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo::before {
+      content: "";
+      font-size: 28px;
+      margin-right: 10px;
+    }
+
+    .menu-button {
+      background-color: #007aff;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-dropdown {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      z-index: 1000;
+      display: none;
+      width: 200px;
+    }
+
+    .menu-dropdown a {
+      display: block;
+      padding: 10px;
+      color: #1d1d1f;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-dropdown a:hover {
+      background-color: #f5f5f7;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 120px auto 40px;
+      padding: 0 20px;
+    }
+
+    .info-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .info-container h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 0;
+      color: #1d1d1f;
+      text-align: center;
+    }
+
+    .info-container h4 {
+      font-size: 18px;
+      font-weight: 500;
+      text-align: center;
+      color: red;
+    }
+
+    .info-container ol,
+    .info-container ul {
+      padding-left: 20px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #1d1d1f;
+    }
+
+    .info-container ol li,
+    .info-container ul li {
+      margin-bottom: 10px;
+    }
+
+    .info-container ol li b,
+    .info-container ul li b {
+      color: #007aff;
+    }
+
+    .info-container ol li a,
+    .info-container ul li a {
+      color: #007aff;
+      text-decoration: none;
+    }
+
+    .info-container ol li a:hover,
+    .info-container ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .warning {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      color: red;
+      font-weight: 500;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #e0e0e6;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 600px) {
+      .menu-button {
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+      }
+
+      .menu-dropdown {
+        top: 60px;
+      }
+
+      .container {
+        margin-top: 100px;
+      }
+
+      .info-container ol,
+      .info-container ul {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Шапка сайта -->
+<div class="header">
+  <div class="logo">АЙФОША</div>
+  <button class="menu-button" onclick="toggleMenu()">☰</button>
+  <div class="menu-dropdown" id="menuDropdown">
+    <a href="/oplatabank.html">Розрахунок ОЧ</a>
+    <a href="/testiphone.html">Перевірка iPhone</a>
+    <a href="/testmac.html">Перевірка MacBook</a>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Информационный блок -->
+  <div class="info-container">
+    <h2>Перевірка MacBook</h2>
+    <center>
+      <h4>
+        <p style="color: red;">
+          Програми для перевірки:
+          <a href="https://drive.google.com/file/d/1yUWyYdbEln25JktGaK8KIITeepjoKRe8/view?usp=share_link">тиць (завантаження)</a>
+        </p>
+      </h4>
+    </center>
+    <ul>
+      <li>❗️ Дізнайтеся типові показники продуктивності вибраної моделі мака в <a href="https://browser.geekbench.com/mac-benchmarks">Geekbench 5</a></li>
+      <li>❗️ Ціну на мак беремо з <a href="https://ti.ua/ua/mac-b-u/">Техноїжака</a>, шукаємо модель, яку принесли, та робимо зазор собі, в залежності від моделі.</li>
+      <li>❗️Або орієнтуємось від Ябко</li>
+    </ul>
+    <ol>
+      <li>Зовнішній вигляд, подряпини, вм'ятини на корпусі та дисплею.</li>
+      <li>Антибликове покриття (Проблема 2012-2015)</li>
+      <li>Відкрити кришку дисплею 10-15 разів (перевірка шлейфу)</li>
+      <li>Дисплей не повинен відходити від кришки та не ходити туди-сюди</li>
+      <li>Зарядний пристрій (оригінальний, кабель без нюансів) –1000, якщо жовтий або пошкоджений</li>
+      <li>Кнопки цілі без вмятин / не має хрустіння / залипання кнопок</li>
+      <li>Кнопки натискаються однаково (Текстовий документ, перевіряємо кожну кнопку)</li>
+      <li>Не має подвійного спрацювання кнопок</li>
+      <li>Трекпад (Цілісність та без дефектів)</li>
+      <li>Порти USB / USB-C</li>
+      <li>Підключити зарядне</li>
+      <li>Перевірка камери та мікрофону (Photo Booth)</li>
+      <li>Динаміки</li>
+      <li>Wi-Fi / Bluetooth / AirDrop – перевірка швидкості інтернету через <a href="https://www.speedtest.net/">speedtest.net</a></li>
+      <li>Плями на білому фоні (PXC)</li>
+      <li>Перевірити аудіо вихід</li>
+      <li>Ємність і кількість циклів акумулятора (Coconut Battery)</li>
+      <li>Відповідність стану батареї віку ноутбука</li>
+      <li>Ноутбук рівно стоїть на столі (батарея сильно не роздута)</li>
+      <li>Перевірка кулерів (Macs Fan Control)</li>
+      <li>Температура датчиків у стані спокою CPU (65-70 градусів Macs Fan Control)</li>
+      <li>Серійний номер на нижній кришці і в налаштуваннях однаковий</li>
+      <li>Зайти в розділ «Про цей Мак» і перевірте в «Звіті про систему» відповідність заявлених характеристик реальним. Жоден пункт не повинен виводити помилок.</li>
+      <li>Конфігурація відповідає заявленій (Процесор, пам'ять, SSD (Geekbench та інф. О маке)</li>
+      <li>Результат бенчмарку (Geekbench) — порівняти його характеристики з типовими. Сильне відхилення в низьку сторону — ознака несправності термоінтерфейсів і троттлінгу процесора, або підміна інформації «Про цей мак». Робити на зарядці.</li>
+      <li>Продуктивність і здоров'я SSD (DriveDx)</li>
+      <li>Перевірка відеочіпа (Heaven benchmark) — Бенчмарк Heaven перевірить графіку на артефакти, а також процесор на стабільність. Якщо під час тестування на екрані не було артефактів, а комп'ютер не завис — все в порядку.</li>
+      <li>Перевірка процесора (CPU Stress Test)</li>
+      <li><a style="color: red;">Немає облікового запису iCloud</a></li>
+      <li><a style="color: red;">Немає паролю прошивки</a></li>
+    </ol>
+    <hr />
+    <h2>Діагностика Apple</h2>
+    <center>Наступна частина тестів вимагає перезавантаження: У режимі відновлення (комбінація клавіш <b>Command+R</b>) перевірити, що на маку не встановлено пароль прошивки, що блокує перестановку системи і вибір завантажувального диска — в розділі «Утиліта пароля прошивки» або «Утиліта безпечного запуску».</center>
+    <ul>
+      <li>Процесор M: Пристрої потрібно ввімкнути і продовжувати утримувати кнопку живлення. Коли на екрані з'явиться вікно параметрів запуску, потрібно відпустити кнопку, а потім натиснути комбінацію клавіш Command+D.</li>
+      <li>Процесор Intel: Під час увімкнення Mac потрібно відразу утримувати клавішу D. Коли на екрані з'явиться індикатор виконання або запит на вибір мови, кнопку можна відпустити.</li>
+    </ul>
+    <hr />
+    <ul>
+      <li>«Діагностика Apple» відобразить результати на екрані у вигляді довідкових кодів. Якщо з пристроєм все в порядку, з'явиться напис «Проблеми не виявлені» з кодом ADP000.</li>
+      <li>Якщо ж на екрані відображається інший код, що свідчить про несправність комп'ютера, його значення необхідно переглянути на офіційному сайті Apple за <a href="https://support.apple.com/ru-ru/102334">посиланням</a>. Там вказано і опис несправності, і кроки, які можна зробити для її усунення.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Функция для показа/скрытия меню
+  function toggleMenu() {
+    const menuDropdown = document.getElementById("menuDropdown");
+    menuDropdown.style.display = menuDropdown.style.display === "block" ? "none" : "block";
+  }
+
+  // Закрытие меню при клике вне его
+  window.addEventListener("click", (event) => {
+    const menuDropdown = document.getElementById("menuDropdown");
+    const menuButton = document.querySelector(".menu-button");
+    if (event.target !== menuButton && !menuButton.contains(event.target) && event.target !== menuDropdown && !menuDropdown.contains(event.target)) {
+      menuDropdown.style.display = "none";
+    }
+  });
+</script>
+</body>
+</html>
