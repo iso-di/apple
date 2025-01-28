@@ -107,11 +107,11 @@
     }
 
     input {
-      width: 96%;
-      padding: 11px;
-      margin-top: 8px;
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
       border-radius: 8px;
-      border: 1.5px solid #e0e0e6;
+      border: 1px solid #e0e0e6;
       font-size: 16px;
       background-color: #f5f5f7;
       color: #1d1d1f;
@@ -131,8 +131,8 @@
     .button-group button {
       background-color: #f5f5f7;
       border: none;
-      padding: 10px 16px;
-      margin: 2px;
+      padding: 12px 20px;
+      margin: 5px;
       border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
@@ -197,10 +197,9 @@
   <div class="logo">АЙФОША</div>
   <button class="menu-button" onclick="toggleMenu()">☰</button>
   <div class="menu-dropdown" id="menuDropdown">
-        <a href="/apple/index.html">Оцінка Trade IN</a>
-    <a href="/apple/oplatabank.html">Розрахунок ОЧ</a>
-    <a href="/apple/testiphone.html">Перевірка iPhone</a>
-    <a href="/apple/testmac.html">Перевірка MacBook</a>
+    <a href="/oplatabank.html">Розрахунок ОЧ</a>
+    <a href="/testiphone.html">Перевірка iPhone</a>
+    <a href="/testmac.html">Перевірка MacBook</a>
   </div>
 </div>
 
@@ -269,9 +268,9 @@
 
     if (!isNaN(X) && !isNaN(divideBy) && X > 0) {
       const Y = X + (X * (percentage / 100));
-      document.getElementById("formula1").textContent = `Вартість по 1С: ${Y.toFixed(2)} ₴`;
+      document.getElementById("formula1").textContent = `Загальна вартість по 1С: ${Y.toFixed(2)} ₴`;
       const result = Y / divideBy;
-      document.getElementById("result1").textContent = `Платіж на міс.: ${result.toFixed(2)} ₴`;
+      document.getElementById("result1").textContent = `Щомісячний платіж: ${result.toFixed(2)} ₴`;
     } else {
       document.getElementById("formula1").textContent = "";
       document.getElementById("result1").textContent = "";
@@ -302,9 +301,9 @@
 
     if (!isNaN(Y2) && !isNaN(divideBy2) && Y2 > 0) {
       const YResult2 = Y2 + (Y2 * (percentage2 / 100));
-      document.getElementById("formula2").textContent = `Вартість по 1С: ${YResult2.toFixed(2)} ₴`;
+      document.getElementById("formula2").textContent = `Загальна вартість по 1С: ${YResult2.toFixed(2)} ₴`;
       const result2 = YResult2 / divideBy2;
-      document.getElementById("result2").textContent = `Плітіж на місяць: ${result2.toFixed(2)} ₴`;
+      document.getElementById("result2").textContent = `Щомісячний платіж: ${result2.toFixed(2)} ₴`;
     } else {
       document.getElementById("formula2").textContent = "";
       document.getElementById("result2").textContent = "";
