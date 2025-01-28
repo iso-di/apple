@@ -1,0 +1,1139 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title> iPhosha</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		  <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content=" iPhosha" />
+<link rel="manifest" href="/site.webmanifest" />
+		
+
+                  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		  <meta name="apple-mobile-web-app-title" content=" iPhosha">
+		  <link rel="apple-touch-icon" href="icon-192x192.png">
+				<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+				<link rel="shortcut icon" href="/favicon.ico" />
+
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="manifest" href="/manifest.json">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
+		<style>
+			/* Устанавливаем черный цвет текста для поля ввода */
+			#inputX, #inputY {
+				color: black;
+				background-color: white;
+			}
+		
+			#result, #formula, #result2, #formula2 {
+				color: rgb(255, 255, 255);
+			}
+		</style>
+		<script>
+		function calculate() {
+		  var X = parseFloat(document.getElementById("inputX").value); // Получаем введённое значение X для первого расчета
+		  var divideBy = parseFloat(document.getElementById("divideSelect").value); // Получаем выбранное значение для деления первого расчета
+		  var percentage = 0;
+		
+		  // Устанавливаем процент для первого расчета в зависимости от выбранного значения
+		  switch (divideBy) {
+			case 3:
+			  percentage = 3.1;
+			  break;
+			case 6:
+			  percentage = 8;
+			  break;
+			case 10:
+			  percentage = 13.7;
+			  break;
+			case 12:
+			  percentage = 16.9;
+			  break;
+			case 15:
+			  percentage = 21.6;
+			  break;
+			case 18:
+			  percentage = 26.5;
+			  break;
+		  }
+		
+		  if (!isNaN(X) && !isNaN(divideBy) && X > 0) {
+			var Y = X + (X * (percentage / 100));
+			document.getElementById("formula").textContent = "Загальна вартість кредиту по 1С:  " + Y.toFixed(2);
+			var result = Y / divideBy;
+			document.getElementById("result").textContent = "На місяць: " + result.toFixed(2);
+			
+			// Показываем результат, если все данные введены
+			document.getElementById("result").style.display = 'inline';
+		  } else {
+			document.getElementById("formula").textContent = "";
+			document.getElementById("result").style.display = 'none'; // Скрываем кнопку, если данные не введены
+		  }
+		
+		  // Второй расчет
+		  var Y2 = parseFloat(document.getElementById("inputY").value); // Получаем значение Y для второго расчета
+		  var divideBy2 = parseFloat(document.getElementById("divideSelect2").value); // Получаем выбранное значение для деления второго расчета
+		  var percentage2 = 0;
+		
+		  // Устанавливаем процент для второго расчета
+		  switch (divideBy2) {
+			case 3:
+			  percentage2 = 1.8;
+			  break;
+			case 6:
+			  percentage2 = 7.7;
+			  break;
+			case 10:
+			  percentage2 = 15.6;
+			  break;
+			case 12:
+			  percentage2 = 16.6;
+			  break;
+			case 15:
+			  percentage2 = 21.6;
+			  break;
+			case 18:
+			  percentage2 = 26.6;
+			  break;
+		  }
+		
+		  if (!isNaN(Y2) && !isNaN(divideBy2) && Y2 > 0) {
+			var YResult2 = Y2 + (Y2 * (percentage2 / 100));
+			document.getElementById("formula2").textContent = "Загальна вартість кредиту по 1С:  " + YResult2.toFixed(2);
+			var result2 = YResult2 / divideBy2;
+			document.getElementById("result2").textContent = "На місяць: " + result2.toFixed(2);
+			
+			// Показываем результат, если все данные введены
+			document.getElementById("result2").style.display = 'inline';
+		  } else {
+			document.getElementById("formula2").textContent = "";
+			document.getElementById("result2").style.display = 'none'; // Скрываем кнопку, если данные не введены
+		  }
+		}
+		</script>
+		</head>
+		<body>
+		
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						
+						<div class="content">
+							
+						</div>
+						<nav>
+							<ul>
+								<li><a href="#tradein">Trade-In</a></li>
+								<li><a href="#o4">Оплата частинами</a></li>
+								<li><a href="#iphone">Перевірка iPhone</a></li>
+								<li><a href="#macbook">Перевірка Macbook</a></li>
+								<li><a href="#kurs">Курс</a></li>
+								
+								<!--<li><a href="#elements">Elements</a></li>-->
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro -->
+<article id="tradein">
+						  <div class="container">
+							<h2 class="major">Оцінка Trade-In</h2>
+							<form>
+							  <!-- Модель телефона -->
+							  <div class="form-group">
+								<select id="model" onchange="updateMemoryOptions(); updateSIMOptions(); calculatePrice();">
+								  <option value="">Оберіть модель телефону</option>
+								  <option value="iPhone 8">iPhone 8</option>
+								  <option value="iPhone 8 Plus">iPhone 8 Plus</option>
+								  <option value="iPhone X">iPhone X</option>
+								  <option value="iPhone XS">iPhone XS</option>
+								  <option value="iPhone XS Max">iPhone XS Max</option>
+								  <option value="iPhone XR">iPhone XR</option>
+								  <option value="iPhone SE2020">iPhone SE 2020</option>
+								  <option value="iPhone 11">iPhone 11</option>
+								  <option value="iPhone 11 Pro">iPhone 11 Pro</option>
+								  <option value="iPhone 11 Pro Max">iPhone 11 Pro Max</option>
+								  <option value="iPhone 12 Mini">iPhone 12 Mini</option>
+								  <option value="iPhone 12">iPhone 12</option>
+								  <option value="iPhone 12 Pro">iPhone 12 Pro</option>
+								  <option value="iPhone 12 Pro Max">iPhone 12 Pro Max</option>
+								  <option value="iPhone SE2022">iPhone SE 2022</option>
+								  <option value="iPhone 13 Mini">iPhone 13 Mini</option>
+								  <option value="iPhone 13">iPhone 13</option>
+								  <option value="iPhone 13 Pro">iPhone 13 Pro</option>
+								  <option value="iPhone 13 Pro Max">iPhone 13 Pro Max</option>
+								  <option value="iPhone 14">iPhone 14</option>
+								  <option value="iPhone 14 Plus">iPhone 14 Plus</option>
+								  <option value="iPhone 14 Pro">iPhone 14 Pro</option>
+								  <option value="iPhone 14 Pro Max">iPhone 14 Pro Max</option>
+								  <option value="iPhone 15">iPhone 15</option>
+								  <option value="iPhone 15 Plus">iPhone 15 Plus</option>
+								  <option value="iPhone 15 Pro">iPhone 15 Pro</option>
+								  <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
+								  <option value="iPhone 16">iPhone 16</option>
+								  <option value="iPhone 16 Plus">iPhone 16 Plus</option>
+								  <option value="iPhone 16 Pro">iPhone 16 Pro</option>
+								  <option value="iPhone 16 Pro Max">iPhone 16 Pro Max</option>
+								</select>
+							  </div>
+						
+							  <!-- Обсяг пам'яті -->
+							  <div class="form-group">
+								<select id="memory" onchange="calculatePrice()">
+								  <option value="">Оберіть обсяг пам'яті</option>
+								</select>
+							  </div>
+						
+							  <!-- Стан телефону -->
+							  <div class="form-group">
+								<select id="condition" onchange="calculatePrice()">
+								  <option value="">Оберіть стан</option>
+								  <option value="Ідеальний">Ідеальний | Відсутні подряпини</option>
+								  <option value="Зі слідами використання">Хороший | Подряпини, сколи чи потертості</option>
+								</select>
+							  </div>
+						
+							  <!-- Стан акумулятора -->
+							  <div class="form-group">
+								<select id="battery" onchange="calculatePrice()">
+								  <option value="">Оберіть стан акумулятора</option>
+								  <option value="87-100%">87-100%</option>
+								  <option value="79-86%">79-86%</option>
+								</select>
+							  </div>
+						
+							  <!-- Версія сім -->
+							  <div class="form-group">
+								<select id="sim" onchange="calculatePrice()">
+								  <option value="">Оберіть тип SIM-карти</option>
+								</select>
+							  </div>
+						
+							</form>
+						
+							<!-- Вывод цены -->
+							<center>
+							  <div id="final-price-container">
+								<p><a class="button primary"><span id="final-price">Будь ласка, заповніть всі форми.</span></a></p>
+							  </div>
+							</center>
+						  </div>
+						</article>
+						
+						<script>
+						// Опции памяти для каждой модели
+						const prices = {
+						  "iPhone 8": {
+							"64GB": 2800,
+							"256GB": 3400,
+						  },
+						  "iPhone 8 Plus": {
+							"64GB": 3200,
+							"256GB": 4100,
+						  },
+						  "iPhone X": {
+							"64GB": 4300,
+							"256GB": 6600,
+						  },
+						  "iPhone XS": {
+							"64GB": 6100,
+							"256GB": 7400,
+							"512GB": 8300,
+						  },
+						  "iPhone XS Max": {
+							"64GB": 6100,
+							"256GB": 8250,
+							"512GB": 9100,
+						  },
+						  "iPhone XR": {
+							"64GB": 5800,
+							"128GB": 7000,
+							"256GB": 7400,
+						  },
+						  "iPhone SE2020": {
+							"64GB": 4200,
+							"128GB": 5100,
+							"256GB": 5700,
+						  },
+						  "iPhone 11": {
+							"64GB": 7500,
+							"128GB": 9800,
+							"256GB": 10400,
+						  },
+					          "iPhone 11 Pro": {
+							"64GB": 10000,
+							"256GB": 12500,
+							"512GB": 13000,
+						  },
+						  "iPhone 11 Pro Max": {
+							"64GB": 10700,
+							"256GB": 14650,
+							"512GB": 14500,
+						  },
+						  "iPhone 12 Mini": {
+							"64GB": 5500,
+							"128GB": 7200,
+							"256GB": 8300,
+						  },
+					          "iPhone 12": {
+							"64GB": 10300,
+							"128GB": 12000,
+							"256GB": 12800,
+						  },
+						  "iPhone 12 Pro": {
+							"128GB": 14600,
+							"256GB": 16000,
+							"512GB": 16500,
+						  },
+						  "iPhone 12 Pro Max": {
+							"128GB": 17500,
+							"256GB": 19100,
+							"512GB": 20000,
+						  },
+						  "iPhone SE2022": {
+							"64GB": 5600,
+							"128GB": 7000,
+							"256GB": 7300,
+						  },
+						  "iPhone 13 Mini": {
+							"128GB": 13500,
+							"256GB": 14500,
+							"512GB": 15000,
+						  },
+					          "iPhone 13": {
+							"128GB": 14500,
+							"256GB": 16500,
+							"512GB": 17500,
+						  },
+						  "iPhone 13 Pro": {
+							"128GB": 19500,
+							"256GB": 21000,
+							"512GB": 22200,
+							"1TB": 23000,
+						  },
+						  "iPhone 13 Pro Max": {
+							"128GB": 22200,
+							"256GB": 25200,
+							"512GB": 26200,
+							"1TB": 27000,
+						  },
+						  "iPhone 14": {
+							"128GB": 17500,
+							"256GB": 20000,
+							"512GB": 21000,
+						  },
+					          "iPhone 14 Plus": {
+							"128GB": 19000,
+							"256GB": 21000,
+							"512GB": 22000,
+						  },
+						  "iPhone 14 Pro": {
+							"128GB": 25500,
+							"256GB": 27700,
+							"512GB": 29000,
+							"1TB": 29700,
+						  },
+						  "iPhone 14 Pro Max": {
+							"128GB": 28300,
+							"256GB": 30000,
+							"512GB": 31000,
+							"1TB": 31700,
+						  },
+						  "iPhone 15": {
+							"128GB": 24000,
+							"256GB": 27000,
+							"512GB": 27800,
+						  },
+					          "iPhone 15 Plus": {
+							"128GB": 26000,
+							"256GB": 27300,
+							"512GB": 28300,
+						  },
+						  "iPhone 15 Pro": {
+							"128GB": 32400,
+							"256GB": 35000,
+							"512GB": 36000,
+							"1TB": 37000,
+						  },
+						  "iPhone 15 Pro Max": {
+							"256GB": 38000,
+							"512GB": 41500,
+							"1TB": 43000,
+						  },
+						   "iPhone 16": {
+							"128GB": 28000,
+							"256GB": 30000,
+							"512GB": 32500,
+						  },
+					          "iPhone 16 Plus": {
+							"128GB": 32500,
+							"256GB": 37000,
+							"512GB": 38000,
+						  },
+						  "iPhone 16 Pro": {
+							"128GB": 38500,
+							"256GB": 43000,
+							"512GB": 45000,
+							"1TB": 47000,
+						  },
+						  "iPhone 16 Pro Max": {
+							"256GB": 47000,
+							"512GB": 51000,
+							"1TB": 53000,
+						  },
+						  // Добавьте другие модели и их цены
+						};
+						
+						// Модификаторы состояния
+						const conditionModifiers = {
+						  "Ідеальний": 1,
+						  "Гарний стан": 0.95,
+						  "Зі слідами використання": 0.92,
+						};
+						
+						// Вычитания по состоянию батареи
+						const batteryDeductions = {
+						  "iPhone 8": {
+							"87-100%": 0,
+							"79-86%": 800,
+						  },
+						  "iPhone 8 Plus": {
+							"87-100%": 0,
+							"79-86%": 800,
+						  },
+						  "iPhone X": {
+							"87-100%": 0,
+							"79-86%": 1500,
+						  },
+						  "iPhone XS": {
+							"87-100%": 0,
+							"79-86%": 1500,
+						  },
+						  "iPhone XS Max": {
+							"87-100%": 0,
+							"79-86%": 1500,
+						  },
+						  "iPhone XR": {
+							"87-100%": 0,
+							"79-86%": 1500,
+						  },
+						  "iPhone SE2020": {
+							"87-100%": 0,
+							"79-86%": 1500,
+						  },
+						  "iPhone 11": {
+							"87-100%": 0,
+							"79-86%": 1500,
+						  },
+					          "iPhone 11 Pro": {
+							"87-100%": 0,
+							"79-86%": 1500,
+						  },
+						  "iPhone 11 Pro Max": {
+							"87-100%": 0,
+							"79-86%": 1500,
+						  },
+						  "iPhone 12 Mini": {
+							"87-100%": 0,
+							"79-86%": 2500,
+						  },
+					          "iPhone 12": {
+							"87-100%": 0,
+							"79-86%": 2500,
+						  },
+						  "iPhone 12 Pro": {
+							"87-100%": 0,
+							"79-86%": 2500,
+						  },
+						  "iPhone 12 Pro Max": {
+							"87-100%": 0,
+							"79-86%": 2500,
+						  },
+						  "iPhone SE2022": {
+							"87-100%": 0,
+							"79-86%": 1700,
+						  },
+						  "iPhone 13 Mini": {
+							"87-100%": 0,
+							"79-86%": 3000,
+						  },
+					          "iPhone 13": {
+							"87-100%": 0,
+							"79-86%": 3000,
+						  },
+						  "iPhone 13 Pro": {
+							"87-100%": 0,
+							"79-86%": 3000,
+						  },
+						  "iPhone 13 Pro Max": {
+							"87-100%": 0,
+							"79-86%": 3000,
+						  },
+						  "iPhone 14": {
+							"87-100%": 0,
+							"79-86%": 3500,
+						  },
+					          "iPhone 14 Plus": {
+							"87-100%": 0,
+							"79-86%": 3500,
+						  },
+						  "iPhone 14 Pro": {
+							"87-100%": 0,
+							"79-86%": 3500,
+						  },
+						  "iPhone 14 Pro Max": {
+							"87-100%": 0,
+							"79-86%": 3500,
+						  },
+						  "iPhone 15": {
+							"87-100%": 0,
+							"79-86%": 4500,
+						  },
+					          "iPhone 15 Plus": {
+							"87-100%": 0,
+							"79-86%": 4500,
+						  },
+						  "iPhone 15 Pro": {
+							"87-100%": 0,
+							"79-86%": 4500,
+						  },
+						  "iPhone 15 Pro Max": {
+							"87-100%": 0,
+							"79-86%": 4500,
+						  },
+						  "iPhone 16": {
+							"87-100%": 0,
+							"79-86%": 4500,
+						  },
+					          "iPhone 16 Plus": {
+							"87-100%": 0,
+							"79-86%": 4500,
+						  },
+						  "iPhone 16 Pro": {
+							"87-100%": 0,
+							"79-86%": 4500,
+						  },
+						  "iPhone 16 Pro Max": {
+							"87-100%": 0,
+							"79-86%": 4500,
+						  },
+						  // Добавьте другие модели и их батареи
+						};
+						
+						// Дополнительные наценки для типа сим-карты (если есть)
+						const simModifiers = {
+						  "iPhone 8": {
+							"SIM": 0,
+						  },
+						  "iPhone 8 Plus": {
+							"SIM": 0,
+						  },
+						  "iPhone X": {
+							"SIM": 0,
+						  },
+						  "iPhone XS": {
+							"SIM": 0,
+						  },
+						  "iPhone XS Max": {
+							"SIM": 0,
+						  },
+						  "iPhone XR": {
+							"SIM": 0,
+						  },
+						  "iPhone SE2020": {
+							"SIM": 0,
+						  },
+						  "iPhone 11": {
+							"SIM": 0,
+						  },
+					          "iPhone 11 Pro": {
+							"SIM": 0,
+						  },
+						  "iPhone 11 Pro Max": {
+							"SIM": 0,
+						  },
+						  "iPhone 12 Mini": {
+							"SIM": 0,
+						  },
+					          "iPhone 12": {
+							"SIM": 0,
+						  },
+						  "iPhone 12 Pro": {
+							"SIM": 0,
+						  },
+						  "iPhone 12 Pro Max": {
+							"SIM": 0,
+						  },
+						  "iPhone SE2022": {
+							"SIM": 0,
+						  },
+						  "iPhone 13 Mini": {
+							"SIM": 0,
+						  },
+					          "iPhone 13": {
+							"SIM": 0,
+						  },
+						  "iPhone 13 Pro": {
+							"SIM": 0,
+						  },
+						  "iPhone 13 Pro Max": {
+							"SIM": 0,
+						  },
+						  "iPhone 14": {
+							"SIM": 0,
+    							"eSIM": -1000,
+						  },
+					          "iPhone 14 Plus": {
+							"SIM": 0,
+    							"eSIM": -1000,
+						  },
+						  "iPhone 14 Pro": {
+							"SIM": 0,
+    							"eSIM": -3000,
+						  },
+						  "iPhone 14 Pro Max": {
+							"SIM": 0,
+    							"eSIM": -3200,
+						  },
+						  "iPhone 15": {
+							"SIM": 0,
+    							"eSIM": -1500,
+						  },
+					          "iPhone 15 Plus": {
+							"SIM": 0,
+    							"eSIM": -1700,
+						  },
+						  "iPhone 15 Pro": {
+							"SIM": 0,
+    							"eSIM": -1900,
+						  },
+						  "iPhone 15 Pro Max": {
+							"SIM": 0,
+    							"eSIM": -1900,
+						  },
+						  "iPhone 16": {
+							"SIM": 0,
+    							"eSIM": -1500,
+						  },
+					          "iPhone 16 Plus": {
+							"SIM": 0,
+    							"eSIM": -1700,
+						  },
+						  "iPhone 16 Pro": {
+							"SIM": 0,
+    							"eSIM": -2400,
+						  },
+						  "iPhone 16 Pro Max": {
+							"SIM": 0,
+    							"eSIM": -4300,
+						  },
+						};
+						
+						// Функция для обновления памяти в зависимости от модели
+						function updateMemoryOptions() {
+						  const model = document.getElementById("model").value;
+						  const memorySelect = document.getElementById("memory");
+						
+						 // Очистить текущие опции памяти
+						   memorySelect.innerHTML = "<option value=''>Оберіть обсяг пам'яті</option>";
+						 
+						   // Добавить доступные опции памяти для выбранной модели
+						   if (model && prices[model]) {
+							 Object.keys(prices[model]).forEach(memory => {
+							   const option = document.createElement("option");
+							   option.value = memory;
+							   option.textContent = memory;
+							   memorySelect.appendChild(option);
+							 });
+						   }
+						 
+						   // Обновляем отображаемую цену
+						   updatePriceMessage();
+						 }
+						 
+						 // Функция для обновления вариантов SIM в зависимости от модели
+						 function updateSIMOptions() {
+						   const model = document.getElementById("model").value;
+						   const simSelect = document.getElementById("sim");
+						 
+						   // Очистить текущие опции SIM
+						   simSelect.innerHTML = "<option value=''>Оберіть тип SIM-карти</option>";
+						 
+						   // Добавить доступные опции SIM для выбранной модели
+						   if (model && simModifiers[model]) {
+							 Object.keys(simModifiers[model]).forEach(simType => {
+							   const option = document.createElement("option");
+							   option.value = simType;
+							   option.textContent = simType;
+							   simSelect.appendChild(option);
+							 });
+						   }
+						 }
+						 
+						 // Функция для вычисления цены
+						 function calculatePrice() {
+						   const model = document.getElementById("model").value;
+						   const memory = document.getElementById("memory").value;
+						   const condition = document.getElementById("condition").value;
+						   const battery = document.getElementById("battery").value;
+						   const sim = document.getElementById("sim").value; // Получаем значение типа сим-карты
+						 
+						   if (model && memory && condition && battery && sim) {
+							 const basePrice = prices[model] && prices[model][memory];
+						 
+							 if (basePrice !== undefined) {
+							   let finalPrice = basePrice * conditionModifiers[condition];
+							   finalPrice -= batteryDeductions[model] && batteryDeductions[model][battery] || 0;
+							   
+							   finalPrice += simModifiers[model] && simModifiers[model][sim] || 0;
+						 
+							   // Обновить отображаемую цену
+							   document.getElementById("final-price").textContent = "Оцінка телефону: " + finalPrice.toFixed(2) + " грн";
+							 }
+						   } else {
+							 // Если не все поля выбраны, показываем сообщение
+							 updatePriceMessage();
+						   }
+						 }
+						 
+						 // Функция для обновления текста сообщения
+						 function updatePriceMessage() {
+						   const model = document.getElementById("model").value;
+						   const memory = document.getElementById("memory").value;
+						   const condition = document.getElementById("condition").value;
+						   const battery = document.getElementById("battery").value;
+						 
+						   // Если все поля не заполнены, показываем сообщение
+						   if (!model || !memory || !condition || !battery || !document.getElementById("sim").value) {
+							 document.getElementById("final-price").textContent = "Будь ласка, заповніть всі форми.";
+						   } else {
+							 calculatePrice();
+						   }
+						 }
+						 
+						 // Добавляем обработчик событий для всех полей формы
+						 document.querySelectorAll("select").forEach(select => {
+						   select.addEventListener("change", updatePriceMessage);
+						 });
+						 </script>
+					</article> 
+
+						<!-- Work -->
+							<article id="o4">
+							  <h2 class="major">Монобанк</h2>
+							  <label for="inputX">Введіть суму, яка повинна зайти нам: </label>
+							  <input type="number" id="inputX" step="any" oninput="calculate()"> <!-- Событие input для X -->
+							 
+							  <br><br>
+
+							  <label for="divideSelect">Оберіть кількість платежів: </label>
+							  <select id="divideSelect" onchange="calculate()">
+								<option value="3">3 Платежі</option>
+								<option value="6">6 Платежів</option>
+								<option value="10">10 Платежів</option>
+								<option value="12">12 Платежів</option>
+								<option value="15">15 Платежів</option>
+								<option value="18">18 Платежів</option>
+							  </select>
+							  <br><br>
+							  <h3><p style="color: red;" id="formula"></p></h3><!-- Показываем формулу X + процент = Y -->
+							  <center><a class="button primary" id="result" style="display:none;">На місяць: </a></center> <!-- Кнопка скрыта по умолчанию -->
+							  
+							  <hr />
+							
+							  <h2>ПриватБанк <p style="color: red;">+2%</p> </h2>
+							  <label for="inputY">Введіть суму, яка повинна зайти нам: </label>
+							  <input type="number" id="inputY" step="any" oninput="calculate()">
+							  
+							  <br><br>
+							  
+							  <label for="divideSelect2">Оберіть кількість платежів: </label>
+							  <select id="divideSelect2" onchange="calculate()">
+								<option value="3">3 Платежі</option>
+								<option value="6">6 Платежів</option>
+								<option value="10">10 Платежів</option>
+								<option value="12">12 Платежів</option>
+								<option value="15">15 Платежів</option>
+								<option value="18">18 Платежів</option>
+							  </select>
+							  <br><br>
+
+							  <h3><p style="color: red;" id="formula2"></p></h3><!-- Показываем формулу X + процент = Y -->
+							  <center><a class="button primary" id="result2" style="display:none;">На місяць: </a></center> <!-- Кнопка скрыта по умолчанию -->
+							</article>
+
+						<!-- About -->
+							<article id="iphone">
+								<h2 class="major">Схема перевірки </h2>
+								<ol>
+									<li>Уточнить у клиента что менялось в телефоне, был ли он в ремонте?</li>
+									<li>Проверка телефона на розыск по базе <a href="https://wanted.mvs.gov.ua/searchthing<">МВД</a></li>
+									<li>Подключение телефона к программе <b>3uTools</b></li>
+									<li>Оценка внешнего состояния (ГНУТОСТЬ КОРПУСА, сколы, царапины, вмятины, трещины)</li>
+									<li>Проверка наличия болтов и целостность сеточек динамиков (верхних нижних)</li>
+									<li>Проверка на наличие люфта экрана с корпусом</li>
+									<li>Проверка экрана на оригинальность (толщина рамок, цвет матрицы должен быть черным, не серым)</li>
+									<li>Проверка рабоспособности всех кнопок (на залипание, западание)</li>
+									<li>Вставляем сим-карту и следим что бы не пропадала сеть</li>
+									<li>Включаем дисплей на максимальную яркость и проверяем на мертвые зоны</li>
+									<li>Проверка дисплея на работоспособность True Tone</li>
+									<li>Проверка дисплея на пятна, засветы на белом и черном фоне</li>
+									<li>Проверка дисплея под углом (что б не было пятен никаких)</li>
+									<li>Проверка камеры (основной, фронтальной) на наличие пятен в портретном режиме и пыли</li>
+									<li>Проверка микрофонов камеры (основной, фронтальной, запись пробного видео со звуком)</li>
+									<li>Проверка микрофона диктофона и проверка компаса</li>
+									<li>Проверка наушников (вставляем наушники и проверяем работоспособность)</li>
+									<li>Проверка вибрации (Ползунок включения беззвучного режима)</li>
+									<li>Проверка разъемов наушников и зарядки (подключить наушники и зарядку)</li>
+									<li>Проверка состояние АКБ (что б не было прочерка)</li>
+									<li>Работоспособность Wi-Fi и Блютуз</li>
+									<li>Проверка функции Touch ID/Face ID</li>
+									<li>Тестовый звонок, проверяем на громкой и обычной связи, датчик затемения</li>
+									<li>Проверка функции Apple Pay</li>
+									<li>Проверить звук (звучание верхнего и нижнего динамика)</li>
+									<li>Проверка функции Apple Pay</li>
+<p></p>
+<center><h5><p style="color: red;">При покупке телефона клиента обязательно делаем сброс контента и настроек и активируем через СИМ-КАРТУ!</p></h5></center>
+
+								</ol>									
+							</article>
+							
+							<article id="macbook">
+								<h2 class="major">Перевірка MacBook</h2>
+								<center><h4><p style="color: red;">Програми для перевірки: <a href="https://drive.google.com/file/d/1yUWyYdbEln25JktGaK8KIITeepjoKRe8/view?usp=share_link">тиць (завантаження)</p></h4></center></a>
+								
+								<ul>
+									<li>❗️ Дізнайтеся типові показники продуктивності вибраної моделі мака в  <a href="browser.geekbench.com/mac-benchmarks">Geekbench 5 </a></li>
+                                    <li>❗️ Ціну на мак беремо з <a href="https://ti.ua/ua/mac-b-u/"> Техноїжака</a> шукаємо модель яку принесли, та робимо зазор собі, в залежності від моделі.</li>
+									<li>❗️Або орієнтуємось від Ябко</li>
+								</ul>
+								<ol>
+									<li>Зовнішній вигляд, подряпини, вм'ятини на корпусі та дисплею.</li>
+									<li>Антиблиĸовое покриття (Проблема 2012-2015)</li>
+									<li>Відкрити кришку диплею 10-15 раз (перевірка шлейфу)</li>
+									<li>Дисплей не повинен відходити від кришки та не ходити туди-сюда</li>
+									<li>Зарядний пристрій (оригінальний, ĸабель без нюансів)  -1000 якщо жовтий або пошкоджений</li>
+									<li>Кнопки цілі без вмятин / не має хрустіння / залипиння ĸнопоĸ</li>
+									<li>Кнопĸи натискаються однаково (Текстовий документ, перевіряємо кожну кнопку)</li>
+									<li>Не має подвійного спрацювання кнопок</li>
+									<li>Треĸпад (Цілісніть та без дефектів)</li>
+									<li>Порти USB / USB-С</li>
+									<li>Підключити зарядне</li>
+									<li>Перевірка камери та мікрофону (Photo Booth)</li>
+									<li>Динаміки </li>
+									<li>Wi-Fi / Bluetooth / AirDrop - перевірка швидкості інтернету через seedtest.net </li>
+									<li>Плями на білому фону (PXC) </li>
+									<li>Перевірити аудіо вихід </li>
+									<li>Ємність і кількість циклів акумулятора (Coconut Battery)</li>
+									<li>Відповідність стану батареї віку ноутбука</li>
+									<li>Ноутбук рівно стоїть на столі (батарея сильно не роздута)</li>
+									<li>Перевірка кулерів (Macs Fan Control) </li>
+									<li>Температура датчиків в стані поĸоя CPU (65-70 градусів Macs Fan Control)</li>
+									<li>Серійний номер на нижній кришці і в налаштуваннях однаковий</li>
+									<li>Зайти в розділ «Про цей Мак» і перевірте в «Звіті про систему» відповідність заявлених характеристик реальним. Жоден пункт не повинен виводити помилок.</li>
+									<li>Конфігурація відповідає заявленій (Процесор, пам'ять, SSD (Geekbench та інф. О маке)</li>
+									<li>Результат бенчмарĸа (Geekbench) — порівняти його характеристики з типовими. Сильне відхилення в низьку сторону — ознака несправності термоінтерфейсів і троттлінгу процесора, або підміна інформації «Про це мак» Робити на зарядці</li>
+									<li>Продуктивність і здоров'я SSD (DriveDx)</li>
+									<li>Перевірка відеочіпа (Heaven benchmark) — Бенчмарк Heaven перевірить графіку на артефакти, а також процесор на стабільність. Якщо під час тестування на екрані не було артефактів, а комп'ютер не завис — все в порядку</li>
+									<li>Перевірка процесора (CPU Stress Test) </li>
+									<li><a style="color: red;">Немає облікового запису iCloud</a></li>
+									<li><a style="color: red;">Немає паролю прошивки</a></li>
+									<hr />
+								<h2 class="major">Діагностика Apple</h2>
+								<center>Наступна частина тестів вимагає перезавантаження: У режимі відновлення (комбінація клавіш <b>Command+R</b>) перевірити, що на маку не встановлено пароль прошивки, що блокує перестановку системи і вибір завантажувального диска — в розділі «Утиліта пароля прошивки» або «Утиліта безпечного запуску»</center>
+								</ol>
+								<ul>
+									<li>Процесор M: Пристрої потрібно ввімкнути і продовжувати утримувати кнопку живлення. Коли на екрані з'явиться вікно параметрів запуску, потрібно відпустити кнопку, а потім натиснути комбінацію клавіш Command+D.</li>
+									<li>Процесор Intel: Під час увімкнення Mac потрібно відразу утримувати клавішу D. Коли на екрані з'явиться індикатор виконання або запит на вибір мови, кнопку можна відпустити.</li>
+									<hr />
+
+									<li> «Діагностика Apple» відобразить результати на екрані у вигляді довідкових кодів. Якщо з пристроєм все в порядку, з'явиться напис «Проблеми не виявлені» з кодом ADP000.</li>
+									<li>Якщо ж на екрані відображається інший код, що свідчить про несправність комп'ютера, його значення необхідно переглянути на офіційному сайті Apple за <a href="https://support.apple.com/ru-ru/102334">посиланням</a>. Там вказано і опис несправності, і кроки, які можна зробити для її усунення.</li>
+								</ul>
+
+								
+							</article>
+
+						<!-- Contact -->
+							<article id="kurs">
+								<h2 class="major">Курс Валют</h2>
+								<iframe src="https://obmenka.sumy.ua/" width="100%" height="400px"></iframe>
+							</article>
+
+						<!-- Elements -->
+							<article id="elements">
+								<h2 class="major">Elements</h2>
+
+								<section>
+									<h3 class="major">Text</h3>
+									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+									<hr />
+									<h2>Heading Level 2</h2>
+									<h3>Heading Level 3</h3>
+									<h4>Heading Level 4</h4>
+									<h5>Heading Level 5</h5>
+									<h6>Heading Level 6</h6>
+									<hr />
+									<h4>Blockquote</h4>
+									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+									<h4>Preformatted</h4>
+									<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+    print 'Iteration ' + i;
+    deck.shuffle();
+    i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+								</section>
+
+								<section>
+									<h3 class="major">Lists</h3>
+
+									<h4>Unordered</h4>
+									<ul>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Alternate</h4>
+									<ul class="alt">
+										<li>Dolor pulvinar etiam.</li>
+										<li>Sagittis adipiscing.</li>
+										<li>Felis enim feugiat.</li>
+									</ul>
+
+									<h4>Ordered</h4>
+									<ol>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis viverra.</li>
+										<li>Felis enim feugiat.</li>
+										<li>Dolor pulvinar etiam.</li>
+										<li>Etiam vel felis lorem.</li>
+										<li>Felis enim et feugiat.</li>
+									</ol>
+									<h4>Icons</h4>
+									<ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+									</ul>
+
+									<h4>Actions</h4>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions stacked">
+										<li><a href="#" class="button primary">Default</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Table</h3>
+									<h4>Default</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+
+									<h4>Alternate</h4>
+									<div class="table-wrapper">
+										<table class="alt">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Price</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Item One</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Two</td>
+													<td>Vis ac commodo adipiscing arcu aliquet.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Three</td>
+													<td> Morbi faucibus arcu accumsan lorem.</td>
+													<td>29.99</td>
+												</tr>
+												<tr>
+													<td>Item Four</td>
+													<td>Vitae integer tempus condimentum.</td>
+													<td>19.99</td>
+												</tr>
+												<tr>
+													<td>Item Five</td>
+													<td>Ante turpis integer aliquet porttitor.</td>
+													<td>29.99</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</section>
+
+								<section>
+									<h3 class="major">Buttons</h3>
+									<ul class="actions">
+										<li><a href="#" class="button primary">Primary</a></li>
+										<li><a href="#" class="button">Default</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button">Default</a></li>
+										<li><a href="#" class="button small">Small</a></li>
+									</ul>
+									<ul class="actions">
+										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+									</ul>
+									<ul class="actions">
+										<li><span class="button primary disabled">Disabled</span></li>
+										<li><span class="button disabled">Disabled</span></li>
+									</ul>
+								</section>
+
+								<section>
+									<h3 class="major">Form</h3>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="demo-name">Name</label>
+												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+											</div>
+											<div class="field half">
+												<label for="demo-email">Email</label>
+												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+											</div>
+											<div class="field">
+												<label for="demo-category">Category</label>
+												<select name="demo-category" id="demo-category">
+													<option value="">-</option>
+													<option value="1">Manufacturing</option>
+													<option value="1">Shipping</option>
+													<option value="1">Administration</option>
+													<option value="1">Human Resources</option>
+												</select>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+												<label for="demo-priority-low">Low</label>
+											</div>
+											<div class="field half">
+												<input type="radio" id="demo-priority-high" name="demo-priority">
+												<label for="demo-priority-high">High</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-copy" name="demo-copy">
+												<label for="demo-copy">Email me a copy</label>
+											</div>
+											<div class="field half">
+												<input type="checkbox" id="demo-human" name="demo-human" checked>
+												<label for="demo-human">Not a robot</label>
+											</div>
+											<div class="field">
+												<label for="demo-message">Message</label>
+												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send Message" class="primary" /></li>
+											<li><input type="reset" value="Reset" /></li>
+										</ul>
+									</form>
+								</section>
+
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="copyright">пиво,водка, турничок через часик я качок. &copy; Джейсон Стэтхем </p>
+					</footer>
+
+			</div>
+
+		<!-- BG -->
+			<div id="bg"></div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

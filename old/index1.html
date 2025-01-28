@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content=" iPhosha" />
+<link rel="manifest" href="/site.webmanifest" />
+		
+
+                  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		  <meta name="apple-mobile-web-app-title" content=" iPhosha">
+		  <link rel="apple-touch-icon" href="icon-192x192.png">
+				<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+				<link rel="shortcut icon" href="/favicon.ico" />
+    <title>Оценка телефона</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+        }
+
+        /* Шапка сайта */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo::before {
+            content: "";
+            font-size: 28px;
+            margin-right: 10px;
+        }
+
+        .menu-button {
+            background-color: #007aff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-dropdown {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+            display: none;
+            width: 200px;
+        }
+
+        .menu-dropdown a {
+            display: block;
+            padding: 10px;
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-dropdown a:hover {
+            background-color: #f5f5f7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 120px auto 40px; /* Увеличиваем margin-top для отступа от шапки */
+            padding: 0 20px;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 0;
+            color: #1d1d1f;
+        }
+
+        .button-group {
+            margin-bottom: 20px;
+        }
+
+        .button-group h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+        }
+
+        .button-group button {
+            background-color: #f5f5f7;
+            border: none;
+            padding: 12px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #1d1d1f;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button-group button:hover {
+            background-color: #e0e0e6;
+        }
+
+        .button-group button.active {
+            background-color: #007aff;
+            color: #ffffff;
+        }
+
+        .button-group button.active:hover {
+            background-color: #0063cc;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f5f5f7;
+            border-radius: 8px;
+            font-size: 18px;
+            text-align: center;
+            color: #1d1d1f;
+        }
+
+        .total-price {
+            font-size: 28px;
+            font-weight: 600;
+            color: #34c759;
+            margin-top: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e6;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @media (max-width: 600px) {
+            .button-group button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            select {
+                font-size: 14px;
+            }
+
+            .menu-button {
+                font-size: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .menu-dropdown {
+                top: 60px;
+            }
+
+            .container {
+                margin-top: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <div class="header">
+        <div class="logo">АЙФОША</div>
+        <button class="menu-button" onclick="toggleMenu()">☰</button>
+        <div class="menu-dropdown" id="menuDropdown">
+            <a href="#">Категория 1</a>
+            <a href="#">Категория 2</a>
+            <a href="#">Категория 3</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Оценить телефон</h2>
+            <form id="evaluation-form">
+                <!-- Выбор модели -->
+                <div class="button-group" id="model-group">
+                    <h3>Модель телефона:</h3>
+                    <select id="model-select">
+                        <option value="">Выберите модель</option>
+                        <option value="iPhone 15">iPhone 15</option>
+                        <option value="iPhone 14">iPhone 14</option>
+                        <option value="iPhone 13">iPhone 13</option>
+                        <option value="Samsung S23">Samsung S23</option>
+                        <option value="Xiaomi 13">Xiaomi 13</option>
+                    </select>
+                </div>
+
+                <!-- Выбор объема памяти (скрыт по умолчанию) -->
+                <div class="button-group hidden" id="storage-group">
+                    <h3>Объем памяти:</h3>
+                    <!-- Кнопки будут добавлены динамически -->
+                </div>
+
+                <!-- Выбор состояния аккумулятора (скрыт по умолчанию) -->
+                <div class="button-group hidden" id="battery-group">
+                    <h3>Состояние аккумулятора:</h3>
+                    <button type="button" data-battery="100-87" title="Отличное состояние аккумулятора">100-87%</button>
+                    <button type="button" data-battery="87-80" title="Хорошее состояние аккумулятора">87-80%</button>
+                </div>
+
+                <!-- Выбор типа SIM (скрыт по умолчанию) -->
+                <div class="button-group hidden" id="sim-group">
+                    <h3>Тип SIM-карты:</h3>
+                    <button type="button" data-sim="esim">eSIM</button>
+                    <button type="button" data-sim="regular">Обычная SIM</button>
+                </div>
+
+                <!-- Блок с итоговой суммой (скрыт по умолчанию) -->
+                <div class="result hidden" id="total-price">
+                    <p>Итоговая стоимость:</p>
+                    <div class="total-price">0 ₽</div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Данные для оценки
+        const prices = {
+            "iPhone 15": {
+                storage: { 64: 80000, 128: 85000, 256: 90000, 512: 100000 },
+                battery: { "100-87": 0, "87-80": -5000 },
+                hasSim: true,
+            },
+            "iPhone 14": {
+                storage: { 64: 70000, 128: 75000, 256: 80000, 512: 90000 },
+                battery: { "100-87": 0, "87-80": -4000 },
+                hasSim: true,
+            },
+            "iPhone 13": {
+                storage: { 64: 60000, 128: 65000, 256: 70000, 512: 80000 },
+                battery: { "100-87": 0, "87-80": -3000 },
+                hasSim: true,
+            },
+            "Samsung S23": {
+                storage: { 128: 75000, 256: 85000, 512: 95000 },
+                battery: { "100-87": 0, "87-80": -4500 },
+                hasSim: false,
+            },
+            "Xiaomi 13": {
+                storage: { 128: 40000, 256: 50000, 512: 60000 },
+                battery: { "100-87": 0, "87-80": -2500 },
+                hasSim: false,
+            },
+        };
+
+        const simMultipliers = {
+            esim: 1,
+            regular: 0.95,
+        };
+
+        // Элементы формы
+        const modelSelect = document.getElementById('model-select');
+        const storageGroup = document.getElementById('storage-group');
+        const batteryGroup = document.getElementById('battery-group');
+        const simGroup = document.getElementById('sim-group');
+        const totalPriceDiv = document.getElementById('total-price');
+        const totalPriceValue = totalPriceDiv.querySelector('.total-price');
+
+        // Сброс формы
+        function resetForm() {
+            storageGroup.classList.add('hidden');
+            batteryGroup.classList.add('hidden');
+            simGroup.classList.add('hidden');
+            totalPriceDiv.classList.add('hidden');
+
+            resetActiveButtons(storageGroup);
+            resetActiveButtons(batteryGroup);
+            resetActiveButtons(simGroup);
+
+            totalPriceValue.textContent = '0 ₽';
+        }
+
+        // Сброс активных кнопок
+        function resetActiveButtons(container) {
+            container.querySelectorAll('button.active').forEach(button => {
+                button.classList.remove('active');
+            });
+        }
+
+        // Обновление вариантов объема памяти
+        function updateStorageOptions(model) {
+            const storageOptions = prices[model].storage;
+            storageGroup.innerHTML = '<h3>Объем памяти:</h3>'; // Очищаем предыдущие кнопки
+
+            for (const storage in storageOptions) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = `${storage} ГБ`;
+                button.dataset.storage = storage;
+                storageGroup.appendChild(button);
+            }
+
+            // Добавляем обработчики событий для новых кнопок
+            storageGroup.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', () => {
+                    resetActiveButtons(storageGroup);
+                    button.classList.add('active');
+                    batteryGroup.classList.remove('hidden');
+                    batteryGroup.classList.add('fade-in');
+                    updateTotalPrice();
+                });
+            });
+        }
+
+        // Обновление итоговой суммы
+        function updateTotalPrice() {
+            const model = modelSelect.value;
+            const storage = storageGroup.querySelector('button.active')?.dataset.storage;
+            const battery = batteryGroup.querySelector('button.active')?.dataset.battery;
+            const sim = simGroup.querySelector('button.active')?.dataset.sim;
+
+            if (!model || !storage || !battery || (prices[model]?.hasSim && !sim)) {
+                totalPriceDiv.classList.add('hidden');
+                return;
+            }
+
+            const basePrice = prices[model].storage[storage] || 0;
+            const batteryPrice = prices[model].battery[battery] || 0;
+            const simMultiplier = sim ? simMultipliers[sim] : 1;
+
+            const totalPrice = (basePrice + batteryPrice) * simMultiplier;
+            totalPriceValue.textContent = `${totalPrice.toFixed(0)} ₽`;
+            totalPriceDiv.classList.remove('hidden');
+            totalPriceDiv.classList.add('fade-in');
+        }
+
+        // Выбор модели
+        modelSelect.addEventListener('change', () => {
+            resetForm();
+            if (modelSelect.value) {
+                updateStorageOptions(modelSelect.value);
+                storageGroup.classList.remove('hidden');
+                storageGroup.classList.add('fade-in');
+            }
+        });
+
+        // Выбор состояния аккумулятора
+        batteryGroup.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                resetActiveButtons(batteryGroup);
+                button.classList.add('active');
+
+                const selectedModel = modelSelect.value;
+                if (prices[selectedModel]?.hasSim) {
+                    simGroup.classList.remove('hidden');
+                    simGroup.classList.add('fade-in');
+                } else {
+                    simGroup.classList.add('hidden');
+                    updateTotalPrice();
+                }
+            });
+        });
+
+        // Выбор типа SIM
+        simGroup.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                resetActiveButtons(simGroup);
+                button.classList.add('active');
+                updateTotalPrice();
+            });
+        });
+
+        // Функция для показа/скрытия меню
+        function toggleMenu() {
+            const menuDropdown = document.getElementById('menuDropdown');
+            menuDropdown.style.display = menuDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Закрытие меню при клике вне его
+        window.addEventListener('click', (event) => {
+            const menuDropdown = document.getElementById('menuDropdown');
+            const menuButton = document.querySelector('.menu-button');
+            if (event.target !== menuButton && !menuButton.contains(event.target) && event.target !== menuDropdown && !menuDropdown.contains(event.target)) {
+                menuDropdown.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
