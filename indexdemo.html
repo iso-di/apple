@@ -348,7 +348,7 @@
   <div class="logo">АЙФОША</div>
   <button class="menu-button" onclick="toggleMenu()">☰</button>
   <div class="menu-dropdown" id="menuDropdown">
-    <a href="#" onclick="showPage('trade-in')">Оценка Trade IN</a>
+    <a href="#" onclick="showPage('trade-in')">Оцінка Trade IN</a>
     <a href="#" onclick="showPage('oplatabank')">Розрахунок ОЧ</a>
     <a href="#" onclick="showPage('testiphone')">Перевірка iPhone</a>
     <a href="#" onclick="showPage('testmac')">Перевірка MacBook</a>
@@ -412,7 +412,6 @@
           <button type="button" data-sim="regular">Фізична SIM</button>
         </div>
         <div class="result hidden" id="total-price">
-          <p>Загальна вартість:</p>
           <div class="total-price">0 ₴</div>
         </div>
       </form>
@@ -423,15 +422,15 @@
   <div id="oplatabank" class="page">
     <div class="form-container">
       <h2>Монобанк</h2>
-      <input type="number" id="inputX" placeholder="Введіть суму, яка повинна зайти нам">
+      <input type="number" id="inputX" placeholder="Сума яка повинна зайти нам">
       <div class="button-group">
         <h3>Термін кредитування:</h3>
-        <button type="button" data-months="3">3 месяца</button>
-        <button type="button" data-months="6">6 месяцев</button>
-        <button type="button" data-months="10">10 месяцев</button>
-        <button type="button" data-months="12">12 месяцев</button>
-        <button type="button" data-months="15">15 месяцев</button>
-        <button type="button" data-months="18">18 месяцев</button>
+        <button type="button" data-months="3">3 платежі</button>
+        <button type="button" data-months="6">6 платежів</button>
+        <button type="button" data-months="10">10 платежів</button>
+        <button type="button" data-months="12">12 платежів</button>
+        <button type="button" data-months="15">15 платежів</button>
+        <button type="button" data-months="18">18 платежів</button>
       </div>
       <div class="result-display">
         <p id="formula1"></p>
@@ -441,15 +440,15 @@
         </br>
 
       <h2>ПриватБанк <a style="color: red;">+2%</a></h2>
-      <input type="number" id="inputY" placeholder="Введіть суму, яка повинна зайти нам">
+      <input type="number" id="inputY" placeholder="Сума яка повинна зайти нам">
       <div class="button-group">
         <h3>Термін кредитування:</h3>
-        <button type="button" data-months2="3">3 месяца</button>
-        <button type="button" data-months2="6">6 месяцев</button>
-        <button type="button" data-months2="10">10 месяцев</button>
-        <button type="button" data-months2="12">12 месяцев</button>
-        <button type="button" data-months2="15">15 месяцев</button>
-        <button type="button" data-months2="18">18 месяцев</button>
+        <button type="button" data-months2="3">3 платежі</button>
+        <button type="button" data-months2="6">6 платежів</button>
+        <button type="button" data-months2="10">10 платежів</button>
+        <button type="button" data-months2="12">12 платежів</button>
+        <button type="button" data-months2="15">15 платежів</button>
+        <button type="button" data-months2="18">18 платежів</button>
       </div>
       <div class="result-display">
         <p id="formula2"></p>
@@ -668,115 +667,96 @@
       storage: { 128: 22200, 256: 25200, 512: 26200, 1024: 27000 },
       battery: { "100-87": 0, "86-79": -3000 },
       hasSim: false,
-      esimDiscount: 4300,
     },
     "iPhone 13 Pro": {
       storage: { 128: 19500, 256: 21000, 512: 22200, 1024: 23000 },
       battery: { "100-87": 0, "86-79": -3000 },
       hasSim: false,
-      esimDiscount: 2400,
     },
     "iPhone 13": {
       storage: { 128: 14500, 256: 16500, 512: 17500 },
       battery: { "100-87": 0, "86-79": -3000 },
       hasSim: false,
-      esimDiscount: 1500,
     },
     "iPhone 13 Mini": {
       storage: { 128: 13500, 256: 14500, 512: 15000 },
       battery: { "100-87": 0, "86-79": -3000 },
       hasSim: false,
-      esimDiscount: 1500,
     },
     "iPhone 12 Pro Max": {
       storage: { 128: 17500, 256: 19100, 512: 20000 },
       battery: { "100-87": 0, "86-79": -2500 },
       hasSim: false,
-      esimDiscount: 4300,
     },
     "iPhone 12 Pro": {
       storage: { 128: 14600, 256: 16000, 512: 16500 },
       battery: { "100-87": 0, "86-79": -2500 },
       hasSim: false,
-      esimDiscount: 2400,
     },
     "iPhone 12": {
       storage: { 64: 10300, 128: 12000, 256: 12800 },
       battery: { "100-87": 0, "86-79": -2500 },
       hasSim: false,
-      esimDiscount: 1500,
     },
     "iPhone 12 Mini": {
       storage: { 64: 5500, 128: 7200, 256: 8300 },
       battery: { "100-87": 0, "86-79": -2500 },
       hasSim: false,
-      esimDiscount: 1000,
     },
     "iPhone 11 Pro Max": {
       storage: { 64: 10700, 256: 14650, 512: 14500 },
       battery: { "100-87": 0, "86-79": -1700 },
       hasSim: false,
-      esimDiscount: 4300,
     },
     "iPhone 11 Pro": {
       storage: { 64: 10000, 256: 12500, 512: 13000 },
       battery: { "100-87": 0, "86-79": -1700 },
       hasSim: false,
-      esimDiscount: 2400,
     },
     "iPhone 11": {
       storage: { 64: 7500, 128: 9800, 256: 10400 },
       battery: { "100-87": 0, "86-79": -1500 },
       hasSim: false,
-      esimDiscount: 1500,
     },
     "iPhone XS Max": {
       storage: { 64: 6100, 256: 8250, 512: 9100 },
       battery: { "100-87": 0, "86-79": -1500 },
       hasSim: false,
-      esimDiscount: 4300,
     },
     "iPhone XS": {
       storage: { 64: 6100, 256: 7400, 512: 8300 },
       battery: { "100-87": 0, "86-79": -1500 },
       hasSim: false,
-      esimDiscount: 2400,
     },
     "iPhone X": {
       storage: { 64: 4300, 256: 6600 },
       battery: { "100-87": 0, "86-79": -1500 },
       hasSim: false,
-      esimDiscount: 1500,
     },
     "iPhone XR": {
       storage: { 64: 5800, 128: 7000, 256: 7400 },
       battery: { "100-87": 0, "86-79": -1500 },
       hasSim: false,
-      esimDiscount: 1500,
     },
     "iPhone SE 2022": {
       storage: { 64: 5600, 128: 7000, 256: 7300 },
       battery: { "100-87": 0, "86-79": -1700 },
       hasSim: false,
-      esimDiscount: 500,
     },
     "iPhone SE 2020": {
       storage: { 64: 4200, 128: 5100, 256: 5700 },
       battery: { "100-87": 0, "86-79": -1700 },
       hasSim: false,
-      esimDiscount: 0,
     },
     "iPhone 8 Plus": {
       storage: { 64: 3200, 256: 4100 },
       battery: { "100-87": 0, "86-79": -800 },
       hasSim: false,
-      esimDiscount: 0,
     },
     "iPhone 8": {
       storage: { 64: 2800, 128: 3400 },
       battery: { "100-87": 0, "86-79": -800 },
       hasSim: false,
-      esimDiscount: 0,
     },
   };
 
@@ -912,9 +892,9 @@
 
     if (!isNaN(X) && !isNaN(divideBy) && X > 0) {
       const Y = X + (X * (percentage / 100));
-      document.getElementById("formula1").textContent = `Загальна вартість по 1С: ${Y.toFixed(2)} ₴`;
+      document.getElementById("formula1").textContent = `Вартість по 1С: ${Y.toFixed(2)} ₴`;
       const result = Y / divideBy;
-      document.getElementById("result1").textContent = `Щомісячний платіж: ${result.toFixed(2)} ₴`;
+      document.getElementById("result1").textContent = `В місяць по: ${result.toFixed(2)} ₴`;
     } else {
       document.getElementById("formula1").textContent = "";
       document.getElementById("result1").textContent = "";
@@ -944,9 +924,9 @@
 
     if (!isNaN(Y2) && !isNaN(divideBy2) && Y2 > 0) {
       const YResult2 = Y2 + (Y2 * (percentage2 / 100));
-      document.getElementById("formula2").textContent = `Загальна вартість по 1С: ${YResult2.toFixed(2)} ₴`;
+      document.getElementById("formula2").textContent = `Вартість по 1С: ${YResult2.toFixed(2)} ₴`;
       const result2 = YResult2 / divideBy2;
-      document.getElementById("result2").textContent = `Щомісячний платіж: ${result2.toFixed(2)} ₴`;
+      document.getElementById("result2").textContent = `В місяць по: ${result2.toFixed(2)} ₴`;
     } else {
       document.getElementById("formula2").textContent = "";
       document.getElementById("result2").textContent = "";
