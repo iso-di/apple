@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Визитка</title>
+  <style>
+    /* Сброс стилей */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Основные стили */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Выравнивание по верху */
+      min-height: 100vh;
+      background: linear-gradient(-45deg, #f5f5f7, #e0e0e7, #d1d1d6, #c0c0c5);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #1d1d1f;
+      padding: 20px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Карточка визитки */
+    .card {
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      max-width: 100%;
+      width: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 20px; /* Отступ сверху */
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Логотип */
+    .logo img {
+      width: 50%;
+      height: 80px;
+      margin-bottom: 10px; /* Уменьшен отступ */
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Текст под логотипом */
+    .slogan {
+      font-size: 22px;
+      font-weight: 500;
+      color: #1d1d1f;
+      margin-bottom: 20px;
+    }
+
+    /* Номер телефона */
+    .phone {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: #1d1d1f;
+    }
+
+    /* Кнопка "Позвонить" */
+    .call-button {
+      display: inline-block;
+      background-color: #007aff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .call-button:hover {
+      background-color: #005bb5;
+    }
+
+    /* Социальные сети */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-links a:hover img {
+      transform: scale(1.2);
+    }
+
+    /* Геолокация (карта) */
+    .map {
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 500px;
+      border: 0;
+    }
+
+    /* Адаптация для мобильных устройств */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .card {
+        padding: 15px;
+      }
+
+      .logo img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .slogan {
+        font-size: 14px;
+      }
+
+      .phone {
+        font-size: 16px;
+      }
+
+      .call-button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+
+      .social-links img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .map iframe {
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Карточка визитки -->
+<div class="card">
+  <!-- Логотип -->
+  <div class="logo">
+    <img src="/logo.jpg" alt="Логотип">
+  </div>
+
+  <!-- Текст под логотипом -->
+  <p class="slogan">Купуй вигідно нову та вживану техніку </p>
+
+  <!-- Номер телефона -->
+  <p class="phone">+38 (066) 800-11-13</p>
+  <p class="phone">+38 (073) 800-11-13</p>
+
+
+  <!-- Кнопка "Позвонить" -->
+  <a href="tel:+380668001113" class="call-button">Зателефонувати</a>
+
+  <!-- Социальные сети -->
+  <div class="social-links">
+    <a href="https://www.instagram.com/iphosha_sumy" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+    <a href="https://t.me/iphosha" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+    </a>
+  </div>
+
+  <!-- Геолокация (карта) -->
+  <div class="map">
+    <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1440.597492362921!2d34.80787691756601!3d50.90392887773383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4129014147c9aa53%3A0xa62dce5ac58ecfc9!2z0JDQmdCk0J7QqNCQ!5e0!3m2!1sru!2sua!4v1739479228741!5m2!1sru!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            allowfullscreen=""
+            loading="lazy">
+    </iframe>
+  </div>
+</div>
+</body>
+</html>
