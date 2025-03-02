@@ -295,6 +295,23 @@
         text-decoration: underline;
       }
 
+        .info-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+
+  .info-container th, .info-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .info-container th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+
       input {
         width: 94.5%;
         padding: 12px;
@@ -387,6 +404,7 @@
   <button class="menu-button" onclick="toggleMenu()">☰</button>
   <div class="menu-dropdown" id="menuDropdown">
     <a href="#" onclick="showPage('trade-in')"><i class="fas fa-exchange-alt"></i> Оцінка Trade IN </a>
+    <a href="#" onclick="showPage('airpods')"><i class="fas fa-headphones-alt"></i> Оцінка Airpods </a>
     <a href="#" onclick="showPage('oplatabank')"><i class="fas fa-calculator"></i> Розрахунок ОЧ </a>
     <a href="#" onclick="showPage('testiphone')"><i class="fas fa-mobile-alt"></i> Перевірка iPhone </a>
     <a href="#" onclick="showPage('testmac')"><i class="fas fa-laptop"></i> Перевірка MacBook </a>
@@ -456,6 +474,52 @@
       </form>
     </div>
   </div>
+
+    <!-- Оцінка  AirPods -->
+        <div id="airpods" class="page">
+        <div class="info-container">
+          <h2>Оцінка AirPods</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Модель</th>
+                <th>Оцінка</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AirPods 2</td>
+                <td>
+                  <span style="color: rgb(0, 255, 30);">A+ 2000</span> /
+                  <span style="color: red;">B- 1500</span>
+                </td>
+              </tr>
+              <tr>
+                <td>AirPods 3</td>
+                <td>
+                  <span style="color: rgb(0, 255, 30);">A+ 2200</span> /
+                  <span style="color: red;">B- 1600</span>
+                </td>
+              </tr>
+              <tr>
+                <td>AirPods Pro 2</td>
+                <td>
+                  <span style="color: rgb(0, 255, 30);">A+ 3000</span> /
+                  <span style="color: red;">B- 2500</span>
+                </td>
+              </tr>
+              <tr>
+                <td>AirPods 4</td>
+                <td>
+                  <span style="color: rgb(0, 255, 30);">A+ 3800</span> /
+                  <span style="color: red;">B- 3300</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
 
   <!-- Страница расчета ОЧ -->
   <div id="oplatabank" class="page">
